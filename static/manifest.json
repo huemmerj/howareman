@@ -1,0 +1,8 @@
+{
+    "name": "howareman",
+    "short_name": "hwm",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#ff3e00",
+    "background_color": "#ffffff"
+  }
