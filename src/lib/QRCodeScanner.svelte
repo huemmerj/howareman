@@ -33,8 +33,8 @@
     }
 
     function onScanSuccess(decodedText: string , decodedResult: Html5QrcodeResult) {
+        html5Qrcode.stop()
         scannedCode = decodedText
-
         console.log(decodedResult)
     }
 
