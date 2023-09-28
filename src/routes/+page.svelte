@@ -4,5 +4,5 @@
     $: scannedCode = "";
 </script>
 
-<QrCodeScanner scannedCode= {scannedCode}/>
+<QrCodeScanner bind:scannedCode= {scannedCode}/>
 {scannedCode}
