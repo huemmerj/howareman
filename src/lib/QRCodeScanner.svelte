@@ -1,10 +1,12 @@
-<script>
-    import { Html5Qrcode } from 'html5-qrcode'
+<script lang="ts">
+    import { Html5Qrcode, type Html5QrcodeResult } from 'html5-qrcode'
     import { onMount } from 'svelte'
 
+
+    export let scannedCode: string
     let scanning = false
 
-    let html5Qrcode
+    let html5Qrcode: Html5Qrcode
 
     onMount(init)
 
@@ -30,12 +32,13 @@
         scanning = false
     }
 
-    function onScanSuccess(decodedText, decodedResult) {
-        alert(`Code matched = ${decodedText}`)
+    function onScanSuccess(decodedText: string , decodedResult: Html5QrcodeResult) {
+        scannedCode = decodedText
+
         console.log(decodedResult)
     }
 
-    function onScanFailure(error) {
+    function onScanFailure(error: string) {
         console.warn(`Code scan error = ${error}`)
     }
 </script>
