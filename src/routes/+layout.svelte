@@ -3,6 +3,8 @@
     import Footer from "$lib/navigation/Footer.svelte";
 import "../app.css";    
 </script>
-<Searchbox/>
-<slot />
-<Footer/>
+<div>
+    <Searchbox/>
+    <slot/>
+    <Footer/>
+</div>
