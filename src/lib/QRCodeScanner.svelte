@@ -62,8 +62,8 @@
 <main>
     <reader id="reader"/>
     {#if scanning}
-        <button on:click={stop}>stop</button>
+        <button class="border border-white" on:click={stop}>stop</button>
     {:else}
-        <button on:click={start}>start</button>
+        <button class="border border-white" on:click={start}>start</button>
     {/if}
 </main>
