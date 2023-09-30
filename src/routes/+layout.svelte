@@ -1,5 +1,6 @@
 <script>
-	import Searchbox from "$lib/Searchbox.svelte";
+	import ScannButton from "$lib/ScannButton.svelte";
+import Searchbox from "$lib/Searchbox.svelte";
     import Footer from "$lib/navigation/Footer.svelte";
 import "../app.css";    
 </script>
@@ -7,4 +8,5 @@ import "../app.css";
     <Searchbox/>
     <slot/>
     <Footer/>
+    <ScannButton/>
 </div>
