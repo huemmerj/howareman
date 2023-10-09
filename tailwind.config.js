@@ -4,10 +4,14 @@ export default {
 	theme: {
 		colors: {
 			background: '#ffffff',
-			primary: '#0A3FC2',
+			primary: '#4531C2',
 			secondary: '#333333',
-			white: '#ffffff',
-			black: '#000000'
+			tertiary: '#D7D7D7',
+			delete: '#DF1A1A',
+			text1: '#000000',
+			text2: '#4E4E4E',
+			text3: '#6E6E6E',
+
 		},
 		extend: {}
 	},

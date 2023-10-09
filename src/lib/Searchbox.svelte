@@ -1,4 +1,4 @@
-<div class="flex justify-start p-5">
-    <input class="border rounded-l-full py-2 pl-1"placeholder="nach was Suchst du?"/>
-    <button class="border-y border-r rounded-r-full border-black bg-primary text-white p-2">Suchen</button>
+<div class="p-5 flex gap-3">
+        <input class="shadow flex justify-between border w-full rounded-full p-2" placeholder="nach was Suchst du?"/>
+        <button class=" shadow border rounded-full border-primary bg-background text-white p-2">Suchen</button>
 </div>
