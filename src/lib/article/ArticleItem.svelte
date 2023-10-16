@@ -1,7 +1,10 @@
 <script lang="ts">
+    import { createEventDispatcher } from 'svelte';
+
+    const dispatch = createEventDispatcher();
 	import AddToOrderListButton from '$lib/buttons/AddToOrderListButton.svelte';
-	import DeleteButton from '$lib/buttons/DeleteButton.svelte';
-	import EditButton from '$lib/buttons/EditButton.svelte';
+	import DeleteButton from '$lib/buttons/IconDeleteButton.svelte';
+	import EditButton from '$lib/buttons/IconEditButton.svelte';
 </script>
 <div class="shadow flex my-5 border border-tertiary rounded-xl">
     <div class="p-3 flex-auto w-32">
@@ -21,8 +24,7 @@
         </div>
         <div class="flex gap-3 pt-1">
             <EditButton/>
-            <DeleteButton/>
-            <AddToOrderListButton/>
+            <DeleteButton on:click={() => dispatch("delete", 1)}/>
         </div>
     </div>
 </div>

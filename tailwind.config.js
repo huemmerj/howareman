@@ -10,7 +10,8 @@ export default {
 			delete: '#DF1A1A',
 			text1: '#000000',
 			text2: '#4E4E4E',
-			text3: '#6E6E6E'
+			text3: '#6E6E6E',
+			inverted: '#ffffff',
 		},
 		extend: {}
 	}
