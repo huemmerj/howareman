@@ -15,11 +15,11 @@
     class=" w-5/6"
 >
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div on:click|stopPropagation class="flex-row text-center">
+	<div on:click|stopPropagation class="flex-row">
 		
-		<slot class="flex justify" name="header"/>
+		<slot class="flex" name="header"/>
         <slot name="body"/>
-        <div class="pt-4 flex justify-end">
+        <div class="pt-4 flex justify-center">
             <slot name="footer"/>
         </div>
 		
