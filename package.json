@@ -42,6 +42,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"flowbite": "^1.8.1",
 		"tailwind-merge": "^1.14.0"
 	}
 }
