@@ -1,5 +1,4 @@
 <script lang="ts">
-	import DeleteButton from "$lib/buttons/DeleteButton.svelte";
 
 	export let showModal: Boolean; // boolean
 

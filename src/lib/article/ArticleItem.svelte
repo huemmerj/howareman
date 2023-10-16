@@ -25,6 +25,7 @@
         <div class="flex gap-3 pt-1">
             <EditButton/>
             <DeleteButton on:click={() => dispatch("delete", 1)}/>
+            <AddToOrderListButton/>
         </div>
     </div>
 </div>

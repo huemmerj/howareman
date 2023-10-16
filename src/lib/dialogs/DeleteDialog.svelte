@@ -7,7 +7,7 @@
 
 	export let showModal: Boolean; // boolean
 
-	let dialog: HTMLDialogElement; // HTMLDialogElement
+	export let dialog: HTMLDialogElement; // HTMLDialogElement
     let dispatch = createEventDispatcher();
 </script>
 
