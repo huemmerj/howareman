@@ -3,4 +3,4 @@
 	import Button from './Button.svelte';
 </script>
 
-<Button><ListIcon/></Button>
+<Button on:click><ListIcon/></Button>

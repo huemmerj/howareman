@@ -25,7 +25,7 @@
         <div class="flex gap-3 pt-1">
             <EditButton/>
             <DeleteButton on:click={() => dispatch("delete", 1)}/>
-            <AddToOrderListButton/>
+            <AddToOrderListButton on:click={() => dispatch("addToOrderList")}/>
         </div>
     </div>
 </div>

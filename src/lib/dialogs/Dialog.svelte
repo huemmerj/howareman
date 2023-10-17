@@ -17,8 +17,12 @@
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div on:click|stopPropagation class="flex-row">
 		
-		<slot class="flex" name="header"/>
-        <slot name="body"/>
+        <div class="flex justify-center pb-5">
+            <slot class="flex" name="header"/>
+        </div>
+        <div class="flex justify-center">
+            <slot name="body"/>
+        </div>
         <div class="pt-4 flex justify-center">
             <slot name="footer"/>
         </div>
