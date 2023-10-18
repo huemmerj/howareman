@@ -15,9 +15,9 @@
     class=" w-5/6"
 >
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div on:click|stopPropagation class="flex-row">
+	<div on:click|stopPropagation class="text flex-row">
 		
-        <div class="flex justify-center pb-5">
+        <div class="text-lg text-text1 flex justify-center pb-5">
             <slot class="flex" name="header"/>
         </div>
         <div class="flex justify-center">

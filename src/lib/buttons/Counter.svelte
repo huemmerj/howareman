@@ -8,7 +8,7 @@
     }
 </script>
 <div class="flex">
-    <button on:click={decrement} class=" p-1 border px-4 rounded-l-full">-</button>
-    <input {value} class="flex text-center border-y w-9"/>
-    <button on:click={increment} class="border px-4 rounded-r-full">+</button>
+    <button on:click={decrement} class="shadow-md border-tertiary p-1 border px-4 rounded-l-full">-</button>
+    <input {value} class="shadow-md border-tertiary flex text-center border-y w-9"/>
+    <button on:click={increment} class="shadow-md border-tertiary border px-4 rounded-r-full">+</button>
 </div>

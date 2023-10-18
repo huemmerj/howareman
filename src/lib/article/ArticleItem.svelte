@@ -6,7 +6,7 @@
 	import DeleteButton from '$lib/buttons/IconDeleteButton.svelte';
 	import EditButton from '$lib/buttons/IconEditButton.svelte';
 </script>
-<div class="shadow flex my-5 border border-tertiary rounded-xl">
+<div class="shadow-md flex my-5 border border-tertiary rounded-xl">
     <div class="p-3 flex-auto w-32">
         <img class="rounded-xl" src="https://via.placeholder.com/150" alt="Artikelbild">
     </div>
