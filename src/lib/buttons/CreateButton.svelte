@@ -1,4 +1,5 @@
 <script lang="ts">
-	import Button from "./Button.svelte";
+	import A from './A.svelte';
 </script>
-<Button className="text-inverted border-transparent bg-primary px-3">Anlegen</Button>
+
+<A href="article/create" className="text-inverted border-transparent bg-primary px-3">Anlegen</A>

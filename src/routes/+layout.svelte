@@ -5,7 +5,6 @@ import Searchbox from "$lib/Searchbox.svelte";
 import "../app.css";    
 </script>
 <div>
-    <Searchbox/>
     <slot/>
     <Footer/>
     <ScannButton/>
