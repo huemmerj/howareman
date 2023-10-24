@@ -5,6 +5,10 @@
 
 <h1 class="text-3xl pl-5 pt-5 pb-2.5">Bestelliste</h1>
 
-<div class="p-5 flex-row">
+<div class="p-5 flex flex-col gap-5">
+	<OrderListItem />
+	<OrderListItem />
+	<OrderListItem />
+	<OrderListItem />
 	<OrderListItem />
 </div>
