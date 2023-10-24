@@ -4,7 +4,7 @@
 		placeholder="nach was Suchst du?"
 	/>
 	<button
-		class=" text-primary shadow-md border rounded-full border-primary bg-background text-white p-2"
+                class=" text-primary shadow-md border rounded-full border-primary bg-background text-white p-2"
 		>Suchen</button
 	>
 </div>
