@@ -7,7 +7,7 @@
 <button
 	on:click
 	class={twMerge(
-		'hover:opacity-80 transition-all shadow-md border border-tertiary rounded-lg p-1',
+		'hover:opacity-80 hover:shadow-2xl transition-all shadow-md border border-tertiary rounded-lg p-1',
 		className
 	)}
 >
