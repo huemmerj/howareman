@@ -10,7 +10,10 @@ const config = {
 		adapter: adapter({
 			edge: false,
 			split: true
-		})
+		}),
+		alias: {
+			$db: './src/db' // alias for db folder
+		}
 	}
 };
 
