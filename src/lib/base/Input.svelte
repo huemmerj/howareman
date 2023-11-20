@@ -3,6 +3,7 @@
 	export let lable: string = '';
 	export let placeholder: string = '';
 	export let id: string;
+	export let name: string;
 </script>
 
 <div class="w-full">
@@ -14,6 +15,7 @@
 			{id}
 			class="shadow-md bg-gray-50 border border-tertiary text-text1 text-sm rounded-lg w-full p-2.5"
 			{placeholder}
+			{name}
 		/>
 		<slot />
 	</div>
