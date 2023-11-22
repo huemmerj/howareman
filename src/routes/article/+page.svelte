@@ -1,9 +1,12 @@
 <script lang="ts">
 	import Searchbox from '$lib/Searchbox.svelte';
 	import ArticleItem from '$lib/article/ArticleItem.svelte';
+	import A from '$lib/buttons/A.svelte';
 	import CreateButton from '$lib/buttons/CreateButton.svelte';
 	import AddToOrderListDialog from '$lib/dialogs/AddToOrderListDialog.svelte';
 	import DeleteDialog from '$lib/dialogs/DeleteDialog.svelte';
+	import * as devalue from 'devalue';
+	import { ObjectId } from 'mongodb';
 
 	let deleteDialog: HTMLDialogElement;
 	let addToOrderListDialog: HTMLDialogElement;
@@ -15,11 +18,17 @@
 	};
 	$: showDeleteModal = false;
 	$: showAddToOrderListModal = false;
+	export let data: any;
+	const parsed = devalue.parse(data.data, {
+		ObjectId: ({ value }) => new ObjectId(value)
+	});
+	console.log(parsed);
 </script>
 
 <div class="p-5 flex-row">
 	<h1 class="text-3xl pt-5 pb-2.5">Artikel</h1>
 	<Searchbox />
+	{JSON.stringify(data)}
 	<div class="flex justify-end pt-5 pb-2.5">
 		<CreateButton />
 	</div>
@@ -28,6 +37,7 @@
 			on:delete={() => (showDeleteModal = true)}
 			on:addToOrderList={() => (showAddToOrderListModal = true)}
 		/>
+		{data}
 		<ArticleItem on:delete={() => (showDeleteModal = true)} />
 		<ArticleItem on:delete={() => (showDeleteModal = true)} />
 		<ArticleItem on:delete={() => (showDeleteModal = true)} />

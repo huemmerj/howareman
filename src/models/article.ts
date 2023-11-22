@@ -7,6 +7,6 @@ export default class Article {
 		public name: string,
 		public description: string,
 		public articleNumber: string,
-		public _id?: ObjectId
+		public _id?: string | ObjectId
 	) {}
 }
