@@ -42,6 +42,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"devalue": "^4.3.2",
 		"mongodb": "^6.3.0",
 		"superjson": "^2.2.1",
 		"tailwind-merge": "^1.14.0"
