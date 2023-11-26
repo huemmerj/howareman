@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Searchbox from '$lib/Searchbox.svelte';
 	import ArticleItem from '$lib/article/ArticleItem.svelte';
-	import A from '$lib/buttons/A.svelte';
 	import CreateButton from '$lib/buttons/CreateButton.svelte';
 	import AddToOrderListDialog from '$lib/dialogs/AddToOrderListDialog.svelte';
 	import DeleteDialog from '$lib/dialogs/DeleteDialog.svelte';
@@ -17,12 +16,19 @@
 		});
 		deleteDialog.close();
 		showDeleteModal = false;
+		await refetch();
+		console.log(data);
 	};
 	$: showDeleteModal = false;
 	$: showAddToOrderListModal = false;
 	export let data: { data: Article[] };
-	const articles = data.data;
+	$: articles = data.data;
 	let currentArticle: Article;
+
+	const refetch = async () => {
+		const res = await fetch('/article');
+		articles = await res.json();
+	};
 </script>
 
 <div class="p-5 flex-row">
