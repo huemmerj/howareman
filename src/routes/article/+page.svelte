@@ -5,6 +5,7 @@
 	import CreateButton from '$lib/buttons/CreateButton.svelte';
 	import AddToOrderListDialog from '$lib/dialogs/AddToOrderListDialog.svelte';
 	import DeleteDialog from '$lib/dialogs/DeleteDialog.svelte';
+	import type Article from '../../models/article';
 
 	let deleteDialog: HTMLDialogElement;
 	let addToOrderListDialog: HTMLDialogElement;
@@ -16,31 +17,24 @@
 	};
 	$: showDeleteModal = false;
 	$: showAddToOrderListModal = false;
-	export let data: any;
+	export let data: { data: Article[] };
+	const articles = data.data;
 </script>
 
 <div class="p-5 flex-row">
 	<h1 class="text-3xl pt-5 pb-2.5">Artikel</h1>
 	<Searchbox />
-	{JSON.stringify(data)}
 	<div class="flex justify-end pt-5 pb-2.5">
 		<CreateButton />
 	</div>
 	<div class="flex flex-col gap-5">
-		<ArticleItem
-			on:delete={() => (showDeleteModal = true)}
-			on:addToOrderList={() => (showAddToOrderListModal = true)}
-		/>
-		{data}
-		<ArticleItem on:delete={() => (showDeleteModal = true)} />
-		<ArticleItem on:delete={() => (showDeleteModal = true)} />
-		<ArticleItem on:delete={() => (showDeleteModal = true)} />
-		<ArticleItem on:delete={() => (showDeleteModal = true)} />
-		<ArticleItem on:delete={() => (showDeleteModal = true)} />
-		<ArticleItem on:delete={() => (showDeleteModal = true)} />
-		<ArticleItem on:delete={() => (showDeleteModal = true)} />
-		<ArticleItem on:delete={() => (showDeleteModal = true)} />
-		<ArticleItem on:delete={() => (showDeleteModal = true)} />
+		{#each articles as article}
+			<ArticleItem
+				on:delete={() => (showDeleteModal = true)}
+				on:addToOrderList={() => (showAddToOrderListModal = true)}
+				{article}
+			/>
+		{/each}
 	</div>
 	<DeleteDialog
 		bind:dialog={deleteDialog}

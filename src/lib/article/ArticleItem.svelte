@@ -5,6 +5,8 @@
 	import AddToOrderListButton from '$lib/buttons/AddToOrderListButton.svelte';
 	import DeleteButton from '$lib/buttons/IconDeleteButton.svelte';
 	import EditButton from '$lib/buttons/IconEditButton.svelte';
+	import type Article from '../../models/article';
+	export let article: Article;
 </script>
 
 <div class="shadow-md flex border border-tertiary rounded-lg">
@@ -13,9 +15,9 @@
 	</div>
 	<div class="flex-row flex-auto pt-2 w-64">
 		<div class="flex-row flex-auto">
-			<div class="text-text1">Name</div>
-			<div class="text-sm text-text2">Beschreibung</div>
-			<div class="text-xs text-text3">Artikelnummer</div>
+			<div class="text-text1">{article.name}</div>
+			<div class="text-sm text-text2">{article.description}</div>
+			<div class="text-xs text-text3">{article.articleNumber}</div>
 		</div>
 		<div class="flex gap-3 pt-1">
 			<EditButton />
