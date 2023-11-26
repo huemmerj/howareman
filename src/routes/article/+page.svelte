@@ -5,8 +5,6 @@
 	import CreateButton from '$lib/buttons/CreateButton.svelte';
 	import AddToOrderListDialog from '$lib/dialogs/AddToOrderListDialog.svelte';
 	import DeleteDialog from '$lib/dialogs/DeleteDialog.svelte';
-	import * as devalue from 'devalue';
-	import { ObjectId } from 'mongodb';
 
 	let deleteDialog: HTMLDialogElement;
 	let addToOrderListDialog: HTMLDialogElement;
@@ -19,10 +17,6 @@
 	$: showDeleteModal = false;
 	$: showAddToOrderListModal = false;
 	export let data: any;
-	const parsed = devalue.parse(data.data, {
-		ObjectId: ({ value }) => new ObjectId(value)
-	});
-	console.log(parsed);
 </script>
 
 <div class="p-5 flex-row">
