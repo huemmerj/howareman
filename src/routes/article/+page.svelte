@@ -10,8 +10,11 @@
 	let deleteDialog: HTMLDialogElement;
 	let addToOrderListDialog: HTMLDialogElement;
 
-	let onDeleteConfirm = () => {
-		console.log('delete confirmed');
+	let onDeleteConfirm = async (e: CustomEvent<string>) => {
+		console.log(e.detail);
+		await fetch(`/article/${e.detail}`, {
+			method: 'DELETE'
+		});
 		deleteDialog.close();
 		showDeleteModal = false;
 	};
@@ -19,6 +22,7 @@
 	$: showAddToOrderListModal = false;
 	export let data: { data: Article[] };
 	const articles = data.data;
+	let currentArticle: Article;
 </script>
 
 <div class="p-5 flex-row">
@@ -30,7 +34,10 @@
 	<div class="flex flex-col gap-5">
 		{#each articles as article}
 			<ArticleItem
-				on:delete={() => (showDeleteModal = true)}
+				on:delete={() => {
+					currentArticle = article;
+					showDeleteModal = true;
+				}}
 				on:addToOrderList={() => (showAddToOrderListModal = true)}
 				{article}
 			/>
@@ -40,6 +47,7 @@
 		bind:dialog={deleteDialog}
 		bind:showModal={showDeleteModal}
 		on:delete={onDeleteConfirm}
+		article={currentArticle}
 	/>
 	<AddToOrderListDialog
 		bind:dialog={addToOrderListDialog}
