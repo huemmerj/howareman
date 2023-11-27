@@ -43,6 +43,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"csv": "^6.3.5",
+		"csv-parse": "^5.5.2",
 		"mongodb": "^6.3.0",
 		"superjson": "^2.2.1",
 		"svelte-navigator": "^3.2.2",
