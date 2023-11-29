@@ -1,13 +1,20 @@
 <script lang="ts">
+	import ScannButton from '$lib/ScannButton.svelte';
 	import Searchbox from '$lib/Searchbox.svelte';
 	import ArticleItem from '$lib/article/ArticleItem.svelte';
 	import CreateButton from '$lib/buttons/CreateButton.svelte';
 	import AddToOrderListDialog from '$lib/dialogs/AddToOrderListDialog.svelte';
+	import ArticleScanDialog from '$lib/dialogs/ArticleScanDialog.svelte';
 	import DeleteDialog from '$lib/dialogs/DeleteDialog.svelte';
 	import type Article from '../../models/article';
 
 	let deleteDialog: HTMLDialogElement;
 	let addToOrderListDialog: HTMLDialogElement;
+	let articleScanDialog: HTMLDialogElement;
+
+	$: showDeleteModal = false;
+	$: showAddToOrderListModal = false;
+	$: showArticleScanDialog = false;
 
 	let onDeleteConfirm = async (e: CustomEvent<string>) => {
 		console.log(e.detail);
@@ -19,8 +26,12 @@
 		await refetch();
 		console.log(data);
 	};
-	$: showDeleteModal = false;
-	$: showAddToOrderListModal = false;
+
+	let onScanned = (e: CustomEvent<string>) => {
+		console.log(e.detail);
+		showArticleScanDialog = false;
+	};
+
 	export let data: { data: Article[] };
 	$: articles = data.data;
 	let currentArticle: Article;
@@ -59,4 +70,11 @@
 		bind:dialog={addToOrderListDialog}
 		bind:showModal={showAddToOrderListModal}
 	/>
+	<ArticleScanDialog
+		bind:dialog={articleScanDialog}
+		bind:showModal={showArticleScanDialog}
+		on:scanned={onScanned}
+	/>
+
+	<ScannButton on:click={() => (showArticleScanDialog = true)} />
 </div>
