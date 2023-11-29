@@ -28,14 +28,16 @@
 		console.log(data);
 	};
 
-	let onScanned = (e: CustomEvent<string>) => {
-		search = e.detail;
+	let onScanned = async (e: CustomEvent<string>) => {
+		e.detail;
+		const res = await fetch(`/article?articleNumber=${e.detail}`);
+		articles = await res.json();
 		showArticleScanDialog = false;
 	};
 	let onSearch = async (e: CustomEvent<string>) => {
 		console.log(e.detail);
 		search = e.detail;
-		const res = await fetch(`/article?search=${search}`);
+		const res = await fetch(`/article?name=${search}`);
 		articles = await res.json();
 	};
 
