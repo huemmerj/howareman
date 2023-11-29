@@ -4,10 +4,7 @@
 	import Input from '$lib/base/Input.svelte';
 	import InputBig from '$lib/base/TextArea.svelte';
 	import CancleButton from '$lib/buttons/CancleButton.svelte';
-	import Icon
-	import CancleButton from '$lib/buttons/CancleButton.svelte';
-	import DeleteButton from '$lib/buttons/DeleteButton.svelte';
-	import { createEventDispatcher } from 'svelte'; from '$lib/buttons/IconScanButton.svelte';
+	import IconScanButton from '$lib/buttons/IconScanButton.svelte';
 	import SaveButton from '$lib/buttons/SaveButton.svelte';
 
 	import { goto } from '$app/navigation';
