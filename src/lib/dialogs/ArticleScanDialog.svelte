@@ -46,6 +46,7 @@
 		<main>
 			<reader id="reader" />
 		</main>
+		scannedCode: {scannedCode}
 	</div>
 	<div slot="footer">
 		<button on:click={start}> Start </button>

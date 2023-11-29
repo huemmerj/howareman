@@ -74,6 +74,7 @@
 		bind:dialog={articleScanDialog}
 		bind:showModal={showArticleScanDialog}
 		on:scanned={onScanned}
+		scannedCode="334"
 	/>
 
 	<ScannButton on:click={() => (showArticleScanDialog = true)} />
