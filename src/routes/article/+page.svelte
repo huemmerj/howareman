@@ -16,6 +16,7 @@
 	$: showAddToOrderListModal = false;
 	$: showArticleScanDialog = false;
 
+	$: search = '';
 	let onDeleteConfirm = async (e: CustomEvent<string>) => {
 		console.log(e.detail);
 		await fetch(`/article/${e.detail}`, {
@@ -28,8 +29,14 @@
 	};
 
 	let onScanned = (e: CustomEvent<string>) => {
-		console.log(e.detail);
+		search = e.detail;
 		showArticleScanDialog = false;
+	};
+	let onSearch = async (e: CustomEvent<string>) => {
+		console.log(e.detail);
+		search = e.detail;
+		const res = await fetch(`/article?search=${search}`);
+		articles = await res.json();
 	};
 
 	export let data: { data: Article[] };
@@ -44,7 +51,7 @@
 
 <div class="p-5 flex-row">
 	<h1 class="text-3xl pt-5 pb-2.5">Artikel</h1>
-	<Searchbox />
+	<Searchbox on:click={onSearch} />
 	<div class="flex justify-end pt-5 pb-2.5">
 		<CreateButton />
 	</div>
@@ -74,7 +81,6 @@
 		bind:dialog={articleScanDialog}
 		bind:showModal={showArticleScanDialog}
 		on:scanned={onScanned}
-		scannedCode="334"
 	/>
 
 	<ScannButton on:click={() => (showArticleScanDialog = true)} />

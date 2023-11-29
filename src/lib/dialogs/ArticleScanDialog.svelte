@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { Html5Qrcode, type Html5QrcodeResult } from 'html5-qrcode';
+	import { createEventDispatcher } from 'svelte';
+	const dispatch = createEventDispatcher();
 	import Dialog from './Dialog.svelte';
 
 	import { onMount } from 'svelte';
-	import QrCodeScanner from '$lib/QRCodeScanner.svelte';
 	export let showModal: Boolean;
 	export let dialog: HTMLDialogElement;
 
-	export let scannedCode: string;
+	let scannedCode: string;
 
 	let html5Qrcode: Html5Qrcode;
 
@@ -29,7 +30,7 @@
 	}
 	function onScanSuccess(decodedText: string, decodedResult: Html5QrcodeResult) {
 		html5Qrcode.stop();
-		scannedCode = decodedText;
+		dispatch('scanned', decodedText);
 		console.log(decodedResult);
 	}
 
