@@ -56,7 +56,7 @@
 	<h1 class="text-3xl pt-5 pb-2.5">Artikel</h1>
 	<Searchbox on:click={onSearch} />
 	<div class="flex justify-end pt-5 pb-2.5">
-		<CreateButton />
+		<CreateButton href="article/create" />
 	</div>
 	<div class="flex flex-col gap-5">
 		{#each articles as article}

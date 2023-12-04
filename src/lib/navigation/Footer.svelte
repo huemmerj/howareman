@@ -14,7 +14,7 @@
 	<FooterItem name="Bestellungen" href="/orderlist">
 		<ListIcon />
 	</FooterItem>
-	<FooterItem name="Inventur" href="/inventory">
+	<FooterItem name="Inventur" href="/stocktaking">
 		<InventoryIcon />
 	</FooterItem>
 </footer>
