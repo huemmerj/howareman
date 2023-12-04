@@ -13,7 +13,9 @@
 	let html5Qrcode: Html5Qrcode;
 
 	onMount(init);
-
+	$: if (showModal) {
+		start();
+	}
 	function init() {
 		html5Qrcode = new Html5Qrcode('reader');
 	}

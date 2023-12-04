@@ -17,6 +17,10 @@
 	</div>
 	<div slot="footer">
 		<CancleButton on:click={() => dialog.close()}>Abbrechen</CancleButton>
-		<DeleteButton on:click={() => dispatch('delete', article.uuid)}>Löschen</DeleteButton>
+		<DeleteButton
+			on:click={() => {
+				dispatch('delete', article.uuid);
+			}}>Löschen</DeleteButton
+		>
 	</div>
 </Dialog>

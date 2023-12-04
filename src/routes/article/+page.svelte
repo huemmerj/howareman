@@ -25,14 +25,15 @@
 		deleteDialog.close();
 		showDeleteModal = false;
 		await refetch();
-		console.log(data);
+		console.log(e);
 	};
 
 	let onScanned = async (e: CustomEvent<string>) => {
 		e.detail;
+		articleScanDialog.close();
+		showArticleScanDialog = false;
 		const res = await fetch(`/article?articleNumber=${e.detail}`);
 		articles = await res.json();
-		showArticleScanDialog = false;
 	};
 	let onSearch = async (e: CustomEvent<string>) => {
 		console.log(e.detail);
