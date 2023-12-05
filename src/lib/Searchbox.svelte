@@ -9,9 +9,12 @@
 		class="shadow-md flex justify-between border border-tertiary w-full rounded-full p-2"
 		placeholder="nach was Suchst du?"
 		bind:value={search}
+		on:keypress={({ key }) => {
+			if (key == 'Enter') dispatch('search', search);
+		}}
 	/>
 	<button
 		class=" text-primary shadow-md border rounded-full border-primary bg-background text-white p-2"
-		on:click={() => dispatch('click', search)}>Suchen</button
+		on:click={() => dispatch('search', search)}>Suchen</button
 	>
 </div>
