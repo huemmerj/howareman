@@ -17,9 +17,9 @@
 	$: showArticleScanDialog = false;
 
 	$: search = '';
-	let onDeleteConfirm = async (e: CustomEvent<string>) => {
+	let onDeleteConfirm = async (e: CustomEvent) => {
 		console.log(e.detail);
-		await fetch(`/article/${e.detail}`, {
+		await fetch(`/article/${currentArticle.uuid}`, {
 			method: 'DELETE'
 		});
 		deleteDialog.close();
@@ -74,7 +74,7 @@
 		bind:dialog={deleteDialog}
 		bind:showModal={showDeleteModal}
 		on:delete={onDeleteConfirm}
-		article={currentArticle}
+		headline="Wollen Sie den Artikel wirklich Löschen?"
 	/>
 	<AddToOrderListDialog
 		bind:dialog={addToOrderListDialog}
