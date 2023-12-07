@@ -7,7 +7,8 @@
 	import Button from './buttons/Button.svelte';
 	import ScanDialog from './dialogs/ScanDialog.svelte';
 
-
+	export let showSearchButton = true;
+	export let showScanButton = true;
 	let dialog: HTMLDialogElement;
 
 	let showModal = false
@@ -32,9 +33,11 @@
 	}}>
 		<QRCodeIcon style="font-size: 2em;" />
 	</Button>
-	<Button
-		className=" text-primary shadow-md border rounded-full border-primary bg-background text-white p-2 px-3 aspect-square"
-		on:click={() => dispatch('search', search)}><SearchIcon /></Button
-	>
-	<ScanDialog bind:dialog {showModal} on:scanned={onScanned}/>
+	{#if showSearchButton}
+		<Button
+			className=" text-primary shadow-md border rounded-full border-primary bg-background text-white p-2 px-3 aspect-square"
+			on:click={() => dispatch('search', search)}><SearchIcon /></Button
+		>
+	{/if}
+	{#if showScanButton}<ScanDialog bind:dialog {showModal} on:scanned={onScanned}/>{/if}
 </div>

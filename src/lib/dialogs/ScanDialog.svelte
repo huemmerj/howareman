@@ -47,7 +47,7 @@
 	</div>
 	<div slot="body" class="w-full">
 		<main>
-			<reader id="reader" on:sc/>
+			<reader id="reader"/>
 		</main>
 	</div>
 	<div slot="footer">

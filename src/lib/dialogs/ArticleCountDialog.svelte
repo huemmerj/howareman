@@ -14,7 +14,7 @@
 		<p class="text-text1">Artikel zählen</p>
 	</div>
 	<div slot="body">
-		<Searchbox />
+		<Searchbox showSearchButton={false}/>
 	</div>
 	<div slot="footer">
 		<CancleButton on:click={() => dialog.close()} />
