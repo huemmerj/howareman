@@ -1,13 +1,21 @@
 <script lang="ts">
 	import Searchbox from '$lib/Searchbox.svelte';
 	import CreateButton from '$lib/buttons/CreateButton.svelte';
+	import ArticleCountDialog from '$lib/dialogs/ArticleCountDialog.svelte';
 	import DeleteDialog from '$lib/dialogs/DeleteDialog.svelte';
 	import StockTakingItem from '$lib/stockTaking/StockTakingItem.svelte';
 	import type StockTaking from '../../models/stockTaking';
+
 	export let data: { data: StockTaking[] };
+
 	$: stockTakings = data.data;
+
 	let showDeleteDialog: boolean;
+	let showArticleCountDialog: boolean;
+
 	let deleteDialog: HTMLDialogElement;
+	let articleScanDialog: HTMLDialogElement;
+
 	let currentStockTaking: StockTaking;
 
 	$: search = '';
@@ -48,6 +56,10 @@
 					currentStockTaking = stockTaking;
 					showDeleteDialog = true;
 				}}
+				on:count={() => {
+					currentStockTaking = stockTaking;
+					showArticleCountDialog = true;
+				}}
 			/>
 		{/each}
 	</div>
@@ -57,4 +69,5 @@
 		on:delete={onDeleteConfirm}
 		headline="Wollen Sie die Inventur wirklich Löschen?"
 	/>
+	<ArticleCountDialog bind:dialog={articleScanDialog} bind:showModal={showArticleCountDialog} />
 </div>

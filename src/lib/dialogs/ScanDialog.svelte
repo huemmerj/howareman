@@ -5,6 +5,7 @@
 	import Dialog from './Dialog.svelte';
 
 	import { onMount } from 'svelte';
+	import Button from '$lib/buttons/Button.svelte';
 	export let showModal: Boolean;
 	export let dialog: HTMLDialogElement;
 
@@ -40,18 +41,24 @@
 		console.warn(`Code scan error = ${error}`);
 	}
 </script>
-
-<Dialog bind:dialog on:close={() => console.log('closed')} bind:showModal>
+<Dialog closeOnMisclick={false} bind:dialog on:close={() => console.log('closed')} bind:showModal>
 	<div slot="header">
-		<p class="text-text1">Scannen Sie den Artikel</p>
+		<p class="text-text1">Scannen Sie</p>
 	</div>
 	<div slot="body" class="w-full">
 		<main>
-			<reader id="reader" />
+			<reader id="reader" on:sc/>
 		</main>
 	</div>
+	<div slot="footer">
+		<Button on:click={() => {
+			dialog.close()
+			html5Qrcode.stop()
+		}}>
+			close
+		</Button>
+	</div>
 </Dialog>
-
 <style>
 	reader {
 		width: 100%;

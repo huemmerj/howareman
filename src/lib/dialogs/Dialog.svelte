@@ -2,7 +2,7 @@
 	export let showModal: Boolean; // boolean
 
 	export let dialog: HTMLDialogElement; // HTMLDialogElement
-
+	export let closeOnMisclick = true;
 	$: if (dialog && showModal) dialog.showModal();
 </script>
 
@@ -11,7 +11,7 @@
 	on:focus
 	bind:this={dialog}
 	on:close={() => (showModal = false)}
-	on:click|self={() => dialog.close()}
+	on:click|self={() => {if(closeOnMisclick) dialog.close()}}
 	class=" w-5/6"
 >
 	<!-- svelte-ignore a11y-no-static-element-interactions -->

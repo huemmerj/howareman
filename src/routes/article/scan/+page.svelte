@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ArticleScanDialog from '$lib/dialogs/ArticleScanDialog.svelte';
+	import ArticleScanDialog from '$lib/dialogs/ScanDialog.svelte';
 
 	let articleScanDialog: HTMLDialogElement;
 

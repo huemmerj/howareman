@@ -4,7 +4,7 @@
 	import ArticleItem from '$lib/article/ArticleItem.svelte';
 	import CreateButton from '$lib/buttons/CreateButton.svelte';
 	import AddToOrderListDialog from '$lib/dialogs/AddToOrderListDialog.svelte';
-	import ArticleScanDialog from '$lib/dialogs/ArticleScanDialog.svelte';
+	import ArticleScanDialog from '$lib/dialogs/ScanDialog.svelte';
 	import DeleteDialog from '$lib/dialogs/DeleteDialog.svelte';
 	import type Article from '../../models/article';
 
@@ -29,7 +29,6 @@
 	};
 
 	let onScanned = async (e: CustomEvent<string>) => {
-		e.detail;
 		articleScanDialog.close();
 		showArticleScanDialog = false;
 		const res = await fetch(`/article?articleNumber=${e.detail}`);
@@ -54,7 +53,7 @@
 
 <div class="p-5 flex-row">
 	<h1 class="text-3xl pt-5 pb-2.5">Artikel</h1>
-	<Searchbox on:search={onSearch} />
+	<Searchbox on:search={onSearch} on:scanned={onScanned}/>
 	<div class="flex justify-end pt-5 pb-2.5">
 		<CreateButton href="article/create" />
 	</div>
