@@ -1,24 +1,22 @@
 <script lang="ts">
 	import { Html5Qrcode, type Html5QrcodeResult } from 'html5-qrcode';
 	import { createEventDispatcher } from 'svelte';
+	import { showScanDialog, scannedArticleNumber } from '../../Store';
 	const dispatch = createEventDispatcher();
 	import Dialog from './Dialog.svelte';
 
 	import { onMount } from 'svelte';
 	import Button from '$lib/buttons/Button.svelte';
-	export let showModal: Boolean;
-	export let dialog: HTMLDialogElement;
-
-	let scannedCode: string;
+	let dialog: HTMLDialogElement;
 
 	let html5Qrcode: Html5Qrcode;
 
 	onMount(init);
-	$: if (showModal) {
-		start();
-	}
 	function init() {
 		html5Qrcode = new Html5Qrcode('reader');
+	}
+	$: if ($showScanDialog) {
+		start();
 	}
 	function start() {
 		html5Qrcode.start(
@@ -33,15 +31,15 @@
 	}
 	function onScanSuccess(decodedText: string, decodedResult: Html5QrcodeResult) {
 		html5Qrcode.stop();
-		dispatch('scanned', decodedText);
-		console.log(decodedResult);
+		dialog.close();
+		$scannedArticleNumber = ''; // @todo: remove this line
+		$scannedArticleNumber = decodedText;
 	}
-
 	function onScanFailure(error: string) {
 		console.warn(`Code scan error = ${error}`);
 	}
 </script>
-<Dialog closeOnMisclick={false} bind:dialog on:close={() => console.log('closed')} bind:showModal>
+<Dialog closeOnMisclick={false} bind:dialog on:close={() => console.log('closed')} bind:showModal={$showScanDialog}>
 	<div slot="header">
 		<p class="text-text1">Scannen Sie</p>
 	</div>

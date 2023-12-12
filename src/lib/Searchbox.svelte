@@ -5,18 +5,11 @@
 	import QRCodeIcon from '~icons/mdi/qrcode';
 	import SearchIcon from '~icons/mdi/search';
 	import Button from './buttons/Button.svelte';
-	import ScanDialog from './dialogs/ScanDialog.svelte';
+	import { showScanDialog } from '../Store';
 
 	export let showSearchButton = true;
 	export let showScanButton = true;
-	let dialog: HTMLDialogElement;
 
-	let showModal = false
-
-	const onScanned = (e: CustomEvent<string>) => {
-		dialog.close();
-		dispatch('scanned', e.detail)
-	}
 </script>
 
 <div class="flex gap-3">
@@ -30,7 +23,7 @@
 	/>
 	{#if showScanButton}
 	<Button on:click={() => {
-		showModal = true
+		$showScanDialog = true
 	}}>
 		<QRCodeIcon style="font-size: 2em;" />
 	</Button>
@@ -41,5 +34,4 @@
 			on:click={() => dispatch('search', search)}><SearchIcon /></Button
 		>
 	{/if}
-<ScanDialog bind:dialog {showModal} on:scanned={onScanned}/>
 </div>

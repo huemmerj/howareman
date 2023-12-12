@@ -14,7 +14,7 @@
 	let showArticleCountDialog: boolean;
 
 	let deleteDialog: HTMLDialogElement;
-	let articleScanDialog: HTMLDialogElement;
+	let articleCountDialog: HTMLDialogElement;
 
 	let currentStockTaking: StockTaking;
 
@@ -69,5 +69,5 @@
 		on:delete={onDeleteConfirm}
 		headline="Wollen Sie die Inventur wirklich Löschen?"
 	/>
-	<ArticleCountDialog bind:dialog={articleScanDialog} bind:showModal={showArticleCountDialog} />
+	<ArticleCountDialog bind:dialog={articleCountDialog} bind:showModal={showArticleCountDialog} />
 </div>
