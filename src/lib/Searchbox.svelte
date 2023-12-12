@@ -28,16 +28,18 @@
 			if (key == 'Enter') dispatch('search', search);
 		}}
 	/>
+	{#if showScanButton}
 	<Button on:click={() => {
 		showModal = true
 	}}>
 		<QRCodeIcon style="font-size: 2em;" />
 	</Button>
+	{/if}
 	{#if showSearchButton}
 		<Button
 			className=" text-primary shadow-md border rounded-full border-primary bg-background text-white p-2 px-3 aspect-square"
 			on:click={() => dispatch('search', search)}><SearchIcon /></Button
 		>
 	{/if}
-	{#if showScanButton}<ScanDialog bind:dialog {showModal} on:scanned={onScanned}/>{/if}
+<ScanDialog bind:dialog {showModal} on:scanned={onScanned}/>
 </div>
