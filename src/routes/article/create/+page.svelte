@@ -6,12 +6,19 @@
 	import CancleButton from '$lib/buttons/CancleButton.svelte';
 	import IconScanButton from '$lib/buttons/IconScanButton.svelte';
 	import SaveButton from '$lib/buttons/SaveButton.svelte';
+	import { page } from '$app/stores';
 
 	import { goto } from '$app/navigation';
 	import { scannedArticleNumber, showScanDialog } from '../../../Store';
+	import { onMount } from 'svelte';
 	$: articleNumber = '';
-	scannedArticleNumber.subscribe((e) => {
-		articleNumber = e as string;
+	onMount(() => {
+		articleNumber = $page.data.articleNumberQuery
+		console.log($page.data.articleNumberQuery)
+		scannedArticleNumber.subscribe((e) => {
+			if (!e) return;
+			articleNumber = e as string;
+		})
 	})
 </script>
 

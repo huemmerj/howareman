@@ -8,6 +8,12 @@
 	import { onMount } from 'svelte';
 	import { scannedArticleNumber } from '../../Store';
 	import type Article from '../../models/article';
+	import Button from '$lib/buttons/Button.svelte';
+
+	import A from '$lib/buttons/A.svelte';
+
+
+	export let data: { data: Article[] };
 
 	let deleteDialog: HTMLDialogElement;
 	let addToOrderListDialog: HTMLDialogElement;
@@ -16,6 +22,10 @@
 	$: showAddToOrderListModal = false;
 
 	$: search = '';
+
+	$: articles = data.data;
+
+	$: articleNumber = '';
 	let onDeleteConfirm = async (e: CustomEvent) => {
 		console.log(e.detail);
 		await fetch(`/article/${currentArticle.uuid}`, {
@@ -28,14 +38,10 @@
 	};
 
 	let onSearch = async (e: CustomEvent<string>) => {
-		console.log(e.detail);
 		search = e.detail;
 		const res = await fetch(`/article?name=${search}`);
 		articles = await res.json();
 	};
-
-	export let data: { data: Article[] };
-	$: articles = data.data;
 	let currentArticle: Article;
 
 	const refetch = async () => {
@@ -48,6 +54,8 @@
 			if (!e) return;
 			const res = await fetch(`/article?articleNumber=${e}`);
 			articles = await res.json();
+			articleNumber = e as string
+			scannedArticleNumber.set('');
 		});
 	});
 </script>
@@ -55,7 +63,6 @@
 <div class="p-5 flex-row">
 	<h1 class="text-3xl pt-5 pb-2.5">Artikel</h1>
 	<Searchbox on:search={onSearch} showSearchButton={false}/>
-	{$scannedArticleNumber}
 	<div class="flex justify-end pt-5 pb-2.5">
 		<CreateButton href="article/create" />
 	</div>
@@ -69,6 +76,8 @@
 				on:addToOrderList={() => (showAddToOrderListModal = true)}
 				{article}
 			/>
+		{:else}
+			<A href={`article/create?articleNumber=${articleNumber}`}>Artikel Anlegen</A>
 		{/each}
 	</div>
 	<DeleteDialog
