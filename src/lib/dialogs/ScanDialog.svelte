@@ -31,9 +31,10 @@
 	}
 	function onScanSuccess(decodedText: string, decodedResult: Html5QrcodeResult) {
 		html5Qrcode.stop();
-		dialog.close();
-		$scannedArticleNumber = ''; // @todo: remove this line
-		$scannedArticleNumber = decodedText;
+		dialog.close();// @todo: remove this line
+		scannedArticleNumber.update(() => {
+			return decodedText;
+		});
 	}
 	function onScanFailure(error: string) {
 		console.warn(`Code scan error = ${error}`);

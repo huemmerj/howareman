@@ -5,6 +5,7 @@
 	import CreateButton from '$lib/buttons/CreateButton.svelte';
 	import AddToOrderListDialog from '$lib/dialogs/AddToOrderListDialog.svelte';
 	import DeleteDialog from '$lib/dialogs/DeleteDialog.svelte';
+	import { onMount } from 'svelte';
 	import { scannedArticleNumber } from '../../Store';
 	import type Article from '../../models/article';
 
@@ -26,11 +27,6 @@
 		console.log(e);
 	};
 
-	scannedArticleNumber.subscribe(async(e) => {
-		if (!e) return;
-		const res = await fetch(`/article?articleNumber=${e}`);
-		articles = await res.json();
-	});
 	let onSearch = async (e: CustomEvent<string>) => {
 		console.log(e.detail);
 		search = e.detail;
@@ -46,6 +42,14 @@
 		const res = await fetch('/article');
 		articles = await res.json();
 	};
+
+	onMount(() => {
+		scannedArticleNumber.subscribe(async(e) => {
+			if (!e) return;
+			const res = await fetch(`/article?articleNumber=${e}`);
+			articles = await res.json();
+		});
+	});
 </script>
 
 <div class="p-5 flex-row">

@@ -8,6 +8,11 @@
 	import SaveButton from '$lib/buttons/SaveButton.svelte';
 
 	import { goto } from '$app/navigation';
+	import { scannedArticleNumber, showScanDialog } from '../../../Store';
+	$: articleNumber = '';
+	scannedArticleNumber.subscribe((e) => {
+		articleNumber = e as string;
+	})
 </script>
 
 <h1 class="text-3xl pl-5 pt-5 pb-2.5">Artikel Anlegen</h1>
@@ -25,8 +30,11 @@
 		<Input name="name" id="name" lable="Name" placeholder="Titel" />
 		<InputBig name="description" id="description" lable="Beschreibung" placeholder="Beschreibung" />
 		<div class="flex">
-			<Input name="articleNumber" id="articleNumber" lable="Artikelnummer" placeholder="123456789">
-				<IconScanButton />
+			<Input bind:value={articleNumber} name="articleNumber" id="articleNumber" lable="Artikelnummer" placeholder="123456789">
+				<IconScanButton on:click={(e) => {
+					e.preventDefault()
+					$showScanDialog = true
+					}}/>
 			</Input>
 		</div>
 		<div class="flex justify-end gap-3 pt-6">
