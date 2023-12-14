@@ -12,6 +12,6 @@
 
 <div class="flex">
 	<Button on:click={decrement} className="px-4 rounded-l-full">-</Button>
-	<input {value} class="shadow-md border-tertiary flex text-center border-y w-9" />
+	<input bind:value={value} class="shadow-md border-tertiary flex text-center border-y w-9" />
 	<Button on:click={increment} className="px-4 rounded-r-full">+</Button>
 </div>
