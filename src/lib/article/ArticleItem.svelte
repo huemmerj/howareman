@@ -6,8 +6,10 @@
 	import DeleteButton from '$lib/buttons/IconDeleteButton.svelte';
 	import EditButton from '$lib/buttons/IconEditButton.svelte';
 	import type Article from '../../models/article';
+	import Counter from '$lib/buttons/Counter.svelte';
 	export let article: Article;
 	export let small: boolean = false;
+	export let showCounter: boolean = false;
 </script>
 
 <div class="shadow-md flex border border-tertiary rounded-lg">
@@ -26,6 +28,11 @@
 				<DeleteButton on:click={() => dispatch('delete', 1)} />
 				<AddToOrderListButton on:click={() => dispatch('addToOrderList')} />
 			</div>
+		{/if}
+		{#if showCounter}
+		<div class="pb-2">
+			<Counter />
+		</div>
 		{/if}
 
 	</div>

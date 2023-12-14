@@ -7,6 +7,7 @@
 	import { onMount } from 'svelte';
 	import { scannedArticleNumber } from '../../Store';
 	import A from '$lib/buttons/A.svelte';
+	import SaveButton from '$lib/buttons/SaveButton.svelte';
 
 	export let showModal: Boolean;
 
@@ -24,6 +25,10 @@
 			scannedArticleNumber.set('');
 		});
 	});
+	const onSearched = async (e: CustomEvent<string>) => {
+		const res = await fetch(`/article?name=${e.detail}`);
+		articles = await res.json();
+	}
 </script>
 
 <Dialog bind:dialog on:close={() => console.log('closed')} bind:showModal>
@@ -32,23 +37,21 @@
 	</div>
 	<div slot="body">
 		<div class="pb-2.5">
-			<Searchbox showSearchButton={false}/>
+			<Searchbox showSearchButton={false} on:search={onSearched}/>
 		</div>
-		<div class="flex flex-col gap-5">
+		<div class="flex flex-col gap-5 max-h-80 overflow-y-scroll">
 
 		{#each articles as article}
 			<ArticleItem
 				{article}
 				small={true}
+				showCounter={true}
 			/>
 		{/each}
-		<ArticleItem
-			article={{uuid:"3", name: 'Test', description: 'Test', articleNumber: '123'}}
-			small={true}
-		/>
 			</div>
 	</div>
 	<div slot="footer">
 		<CancleButton on:click={() => dialog.close()} />
+		<SaveButton />
 	</div>
 </Dialog>
