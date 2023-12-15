@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher<{count: number}>();
 	let search: string = '';
 	import QRCodeIcon from '~icons/mdi/qrcode';
 	import SearchIcon from '~icons/mdi/search';

@@ -31,7 +31,7 @@
 		{/if}
 		{#if showCounter}
 		<div class="pb-2">
-			<Counter />
+			<Counter on:change={(e) => {dispatch('count', e.detail)}}/>
 		</div>
 		{/if}
 

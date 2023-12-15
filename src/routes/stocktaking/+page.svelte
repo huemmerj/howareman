@@ -69,5 +69,5 @@
 		on:delete={onDeleteConfirm}
 		headline="Wollen Sie die Inventur wirklich Löschen?"
 	/>
-	<ArticleCountDialog bind:dialog={articleCountDialog} bind:showModal={showArticleCountDialog} />
+	<ArticleCountDialog bind:stockTaking={currentStockTaking} bind:dialog={articleCountDialog} bind:showModal={showArticleCountDialog} />
 </div>
