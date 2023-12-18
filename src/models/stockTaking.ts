@@ -6,7 +6,7 @@ export default class StockTaking {
 	constructor(
 		public name: string,
 		public uuid: string,
-		public article?: {
+		public articles?: {
 			uuid: string;
 			articleNumber: string;
 			name: string;

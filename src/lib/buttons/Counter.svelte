@@ -2,7 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import Button from './Button.svelte';
 
-	export let value: number = 1;
+	export let value: number = 0;
 	const increment = () => {
 		value++;
 		onChange();

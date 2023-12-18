@@ -10,22 +10,24 @@
 	import SaveButton from '$lib/buttons/SaveButton.svelte';
 	import type StockTaking from '../../models/stockTaking';
 	import type Article from '../../models/article';
+	import { get } from 'svelte/store';
 
 	export let showModal: Boolean;
 
 	export let dialog: HTMLDialogElement;
 
 	export let stockTaking: StockTaking;
-	$: articles = [] as Article[];
 
 	$: articleNumber = '';
+	$: articles = [] as Article[];
+
 	onMount(() => {
 		scannedArticleNumber.subscribe(async(e) => {
 			if (!e) return;
 			const res = await fetch(`/article?articleNumber=${e}`);
 			articles = await res.json();
-			articleNumber = e as string
 			scannedArticleNumber.set('');
+			articleNumber = e as string
 		});
 	});
 	const onSearched = async (e: CustomEvent<string>) => {
@@ -34,6 +36,10 @@
 	}
 
 	$: changedArticles = [] as {uuid: string, count: number, name: string}[];
+
+	const getArticleCount = (uuid: string) => {
+		return stockTaking.articles?.find((a: Article) => a.uuid === uuid);
+	};
 </script>
 
 <Dialog bind:dialog on:close={() => console.log('closed')} bind:showModal>
@@ -45,12 +51,15 @@
 			<Searchbox showSearchButton={false} on:search={onSearched}/>
 		</div>
 		<div class="flex flex-col gap-5 max-h-80 overflow-y-scroll">
+		
 
+		
 		{#each articles as article}
 			<ArticleItem
 				{article}
 				small={true}
 				showCounter={true}
+				count={getArticleCount(article.uuid)?.count}
 				on:count={(e) => {
 					if (changedArticles.find((a) => a.uuid === article.uuid)) {
 						changedArticles = changedArticles.map((a) => {
@@ -63,9 +72,10 @@
 					} else {
 						changedArticles = [...changedArticles, {uuid: article.uuid, count: e.detail, name: article.name}];
 					}
-					console.log(changedArticles)
 				}}
 			/>
+		{:else}
+			<A href={`article/create?articleNumber=${articleNumber}`}>Artikel Anlegen</A>
 		{/each}
 			</div>
 	</div>

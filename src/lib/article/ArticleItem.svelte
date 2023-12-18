@@ -5,11 +5,13 @@
 	import AddToOrderListButton from '$lib/buttons/AddToOrderListButton.svelte';
 	import DeleteButton from '$lib/buttons/IconDeleteButton.svelte';
 	import EditButton from '$lib/buttons/IconEditButton.svelte';
+	import CheckIcon from '~icons/mdi/check';
 	import type Article from '../../models/article';
 	import Counter from '$lib/buttons/Counter.svelte';
 	export let article: Article;
 	export let small: boolean = false;
 	export let showCounter: boolean = false;
+	export let count = 0;
 </script>
 
 <div class="shadow-md flex border border-tertiary rounded-lg">
@@ -30,8 +32,9 @@
 			</div>
 		{/if}
 		{#if showCounter}
-		<div class="pb-2">
-			<Counter on:change={(e) => {dispatch('count', e.detail)}}/>
+		<div class="pb-2 flex align-middle">
+			<Counter on:change={(e) => {dispatch('count', e.detail)}} value={count}/>
+			{#if count}<CheckIcon style="font-size: 1.5em"/>{/if}
 		</div>
 		{/if}
 
