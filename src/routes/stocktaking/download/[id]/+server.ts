@@ -5,7 +5,7 @@ export async function GET({ params }) {
 		uuid: params.id
 	});
 	const csvContent = stockTaking?.articles
-		.map((article) => `${article.uuid}, ${article.name}, ${article.count}`)
+		.map((article) => `${article.uuid}; ${article.name}; ${article.count}`)
 		.join('\n');
 
 	return new Response(csvContent, {
