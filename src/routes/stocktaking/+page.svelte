@@ -5,7 +5,7 @@
 	import DeleteDialog from '$lib/dialogs/DeleteDialog.svelte';
 	import StockTakingItem from '$lib/stockTaking/StockTakingItem.svelte';
 	import type StockTaking from '../../models/stockTaking';
-
+	import { goto } from '$app/navigation';
 	export let data: { data: StockTaking[] };
 
 	$: stockTakings = data.data;
@@ -59,6 +59,9 @@
 				on:count={() => {
 					currentStockTaking = stockTaking;
 					showArticleCountDialog = true;
+				}}
+				on:download={() => {
+					goto('stocktaking/download/'+stockTaking.uuid)
 				}}
 			/>
 		{/each}
