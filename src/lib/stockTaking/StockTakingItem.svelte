@@ -7,6 +7,7 @@
 	import PlusButton from '$lib/buttons/PlusButton.svelte';
 	import { stringify } from 'uuid';
 	import DownloadButton from '$lib/buttons/DownloadButton.svelte';
+	import { notifications } from '$lib/notifications';
 	export let stockTaking: StockTaking;
 	const dispatch = createEventDispatcher<{ delete: string; count: string; download: string }>();
 </script>
@@ -23,6 +24,6 @@
 		</div>
 	</div>
 	<div class="flex align-middle">
-			<PlusButton on:click={() => dispatch('count', stockTaking.uuid)} />
+				<PlusButton on:click={() => dispatch('count', stockTaking.uuid)} />
 		</div>
 </div>
