@@ -10,7 +10,7 @@
 	import SaveButton from '$lib/buttons/SaveButton.svelte';
 	import type StockTaking from '../../models/stockTaking';
 	import type Article from '../../models/article';
-	import { get } from 'svelte/store';
+	import { notifications } from '$lib/notifications';
 
 	export let showModal: Boolean;
 
@@ -40,6 +40,23 @@
 	const getArticleCount = (uuid: string) => {
 		return stockTaking.articles?.find((a: Article) => a.uuid === uuid);
 	};
+
+	const onSave = async () => {
+		try {
+
+			const res = await fetch(`/stocktaking/count/${stockTaking.uuid}`, {
+				method: 'PUT',
+				body: JSON.stringify(changedArticles)
+			});
+			if (res.status === 201){
+				notifications.success('Erfolgreich gespeichert',4000);
+			} else {
+				notifications.danger('Fehler beim speichern',4000);
+			}
+		} catch (e) {
+			notifications.danger(e.message, 4000);
+		}
+	}
 </script>
 
 <Dialog bind:dialog on:close={() => console.log('closed')} bind:showModal>
@@ -81,11 +98,6 @@
 	</div>
 	<div slot="footer">
 		<CancleButton on:click={() => dialog.close()} />
-			<SaveButton on:click={ () => {
-				fetch(`/stocktaking/count/${stockTaking.uuid}`, {
-					method: 'PUT',
-					body: JSON.stringify(changedArticles)
-				});
-			}}/>
+			<SaveButton on:click={onSave}/>
 	</div>
 </Dialog>

@@ -12,7 +12,7 @@
   };
 </script>
 
-<div class="fixed z-[9999] flex flex-col justify-start items-center pointer-events-none mx-auto my-0 p-0 top-2.5 inset-x-0">
+<div class="fixed z-[999999] flex flex-col justify-start items-center pointer-events-none mx-auto my-0 p-0 top-2.5 inset-x-0">
   {#each $notifications as notification (notification.id)}
       <div
           animate:flip
