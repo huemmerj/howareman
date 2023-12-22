@@ -11,6 +11,8 @@
 	import { goto } from '$app/navigation';
 	import { scannedArticleNumber, showScanDialog } from '../../../Store';
 	import { onMount } from 'svelte';
+	import { notifications } from '$lib/notifications';
+	import type { SubmitFunction } from '@sveltejs/kit';
 	$: articleNumber = '';
 	onMount(() => {
 		articleNumber = $page.data.articleNumberQuery
@@ -20,6 +22,14 @@
 			articleNumber = e as string;
 		})
 	})
+	const submit: SubmitFunction = () => {
+  // do something before the form submits
+
+  return async () => {
+   notifications.success('Artikel wurde angelegt', 4000)
+	 goto('/article');
+  }
+}
 </script>
 
 <h1 class="text-3xl pl-5 pt-5 pb-2.5">Artikel Anlegen</h1>
@@ -27,11 +37,7 @@
 <div class="px-5 pt-5 flex flex-col gap-5">
 	<form
 		method="POST"
-		use:enhance={({ formElement, formData, action, cancel }) => {
-			return async ({ result }) => {
-				goto('/article');
-			};
-		}}
+		use:enhance={submit}
 	>
 		<ImageUpload />
 		<Input name="name" id="name" lable="Name" placeholder="Titel" />

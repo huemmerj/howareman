@@ -1,6 +1,7 @@
 import { collections } from '$db/mongo';
 import { v4 as uuidv4 } from 'uuid';
 import type { Load } from '@sveltejs/kit';
+import { notifications } from '$lib/notifications';
 export const load: Load = ({ url }) => {
 	const articleNumber = url.searchParams.get('articleNumber');
 	return { articleNumberQuery: articleNumber };
