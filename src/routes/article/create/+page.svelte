@@ -23,11 +23,15 @@
 		})
 	})
 	const submit: SubmitFunction = () => {
-  // do something before the form submits
 
-  return async () => {
-   notifications.success('Artikel wurde angelegt', 4000)
-	 goto('/article');
+  return async ({result}) => {
+		console.log(result)
+		if (result.type === 'success') {
+			notifications.success('Artikel wurde angelegt', 4000)
+			goto('/article');
+		} else {
+			notifications.danger('Artikel konnte nicht angelegt werden', 4000)
+		}
   }
 }
 </script>
