@@ -1,4 +1,5 @@
-import adapter from '@sveltejs/adapter-netlify';
+// import adapter from '@sveltejs/adapter-netlify';
+import adapter from '@sveltejs/adapter-node';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -13,6 +14,9 @@ const config = {
 		}),
 		alias: {
 			$db: './src/db' // alias for db folder
+		},
+		csrf: {
+			checkOrigin: false
 		}
 	}
 };
