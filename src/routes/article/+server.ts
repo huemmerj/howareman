@@ -5,11 +5,10 @@ export async function GET({ url }) {
 	const search = url.searchParams.get('name');
 	const articleNumber = url.searchParams.get('articleNumber');
 	if (articleNumber) {
-		const article = await collections.articles
-			?.find({ $or: [{ articleNumber: articleNumber }, { ean: articleNumber }] })
-			.project({ _id: 0 })
-			.toArray();
-		return json(article);
+		const article = await collections.articles?.findOne({
+			$or: [{ articleNumber: articleNumber }, { ean: articleNumber }]
+		});
+		return json([article]);
 	}
 	if (search) {
 		const articles = await collections.articles

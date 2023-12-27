@@ -15,7 +15,4 @@ scripts/uploadCSV.js
 scripts/upload.js
 scripts/uploadCSV.js
 scripts/uploadDataNorm.js
-scripts/uploadCSV.js
-scripts/uploadCSV.js
-scripts/uploadCSV.js
-scripts/uploadCSV.js
+scripts/uploadHeinze.js
