@@ -10,3 +10,12 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .netlify
 atlas_url.js
+scripts/uploadCSV.js
+.netlify
+scripts/upload.js
+scripts/uploadCSV.js
+scripts/uploadDataNorm.js
+scripts/uploadCSV.js
+scripts/uploadCSV.js
+scripts/uploadCSV.js
+scripts/uploadCSV.js

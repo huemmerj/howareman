@@ -12,20 +12,15 @@ import 'worker_threads';
 import 'perf_hooks';
 import 'util/types';
 import 'url';
+import 'string_decoder';
 import 'events';
 import 'tls';
 import 'async_hooks';
 import 'console';
 import 'zlib';
-import 'string_decoder';
 import 'crypto';
-import 'diagnostics_channel';
 
-var setCookieExports = {};
-var setCookie = {
-  get exports(){ return setCookieExports; },
-  set exports(v){ setCookieExports = v; },
-};
+var setCookie = {exports: {}};
 
 var defaultParseOptions = {
   decodeValues: true,
@@ -242,9 +237,9 @@ function splitCookiesString(cookiesString) {
 }
 
 setCookie.exports = parse;
-setCookieExports.parse = parse;
-setCookieExports.parseString = parseString;
-var splitCookiesString_1 = setCookieExports.splitCookiesString = splitCookiesString;
+setCookie.exports.parse = parse;
+setCookie.exports.parseString = parseString;
+var splitCookiesString_1 = setCookie.exports.splitCookiesString = splitCookiesString;
 
 /**
  * Splits headers into two categories: single value and multi value

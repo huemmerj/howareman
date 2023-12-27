@@ -4,21 +4,26 @@ import { json } from '@sveltejs/kit';
 export async function GET({ url }) {
 	const search = url.searchParams.get('name');
 	const articleNumber = url.searchParams.get('articleNumber');
-
 	if (articleNumber) {
 		const article = await collections.articles
-			?.find({ articleNumber: articleNumber })
+			?.find({ $or: [{ articleNumber: articleNumber }, { ean: articleNumber }] })
 			.project({ _id: 0 })
 			.toArray();
 		return json(article);
 	}
 	if (search) {
 		const articles = await collections.articles
-			?.find({ name: { $regex: search, $options: 'i' } })
+			?.find({
+				$or: [
+					{ name: { $regex: search, $options: 'i' } },
+					{ description: { $regex: search, $options: 'i' } }
+				]
+			})
+			.limit(100)
 			.project({ _id: 0 })
 			.toArray();
 		return json(articles);
 	}
-	const articles = await collections.articles?.find().project({ _id: 0 }).toArray();
+	const articles = await collections.articles?.find().limit(100).project({ _id: 0 }).toArray();
 	return json(articles);
 }

@@ -9,6 +9,9 @@ function blank_object() {
 function run_all(fns) {
   fns.forEach(run);
 }
+function is_function(thing) {
+  return typeof thing === "function";
+}
 function safe_not_equal(a, b) {
   return a != a ? b == b : a !== b || a && typeof a === "object" || typeof a === "function";
 }
@@ -59,6 +62,9 @@ function setContext(key, context) {
 }
 function getContext(key) {
   return get_current_component().$$.context.get(key);
+}
+function ensure_array_like(array_like_or_iterator) {
+  return array_like_or_iterator?.length !== void 0 ? array_like_or_iterator : Array.from(array_like_or_iterator);
 }
 const _boolean_attributes = (
   /** @type {const} */
@@ -177,6 +183,14 @@ function escape_object(obj) {
   }
   return result;
 }
+function each(items, fn) {
+  items = ensure_array_like(items);
+  let str = "";
+  for (let i = 0; i < items.length; i += 1) {
+    str += fn(items[i], i);
+  }
+  return str;
+}
 const missing_component = {
   $$render: () => ""
 };
@@ -237,17 +251,20 @@ function style_object_to_string(style_object) {
   return Object.keys(style_object).filter((key) => style_object[key]).map((key) => `${key}: ${escape_attribute_value(style_object[key])};`).join(" ");
 }
 export {
-  setContext as a,
-  spread as b,
+  subscribe as a,
+  escape as b,
   create_ssr_component as c,
-  subscribe as d,
-  escape_object as e,
-  add_attribute as f,
-  escape as g,
-  getContext as h,
-  createEventDispatcher as i,
+  add_attribute as d,
+  each as e,
+  createEventDispatcher as f,
+  spread as g,
+  escape_object as h,
+  getContext as i,
+  safe_not_equal as j,
+  is_function as k,
   missing_component as m,
   noop as n,
-  safe_not_equal as s,
+  run_all as r,
+  setContext as s,
   validate_component as v
 };
