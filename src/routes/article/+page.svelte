@@ -1,5 +1,4 @@
 <script lang="ts">
-	import ScannButton from '$lib/ScannButton.svelte';
 	import Searchbox from '$lib/Searchbox.svelte';
 	import ArticleItem from '$lib/article/ArticleItem.svelte';
 	import CreateButton from '$lib/buttons/CreateButton.svelte';
@@ -8,7 +7,6 @@
 	import { onMount } from 'svelte';
 	import { scannedArticleNumber } from '../../Store';
 	import type Article from '../../models/article';
-	import Button from '$lib/buttons/Button.svelte';
 
 	import A from '$lib/buttons/A.svelte';
 
@@ -26,6 +24,8 @@
 	$: articles = data.data;
 
 	$: articleNumber = '';
+
+	// $: loading = 
 	let onDeleteConfirm = async (e: CustomEvent) => {
 		console.log(e.detail);
 		await fetch(`/article/${currentArticle.uuid}`, {

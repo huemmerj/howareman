@@ -8,7 +8,7 @@ export async function GET({ url }) {
 		const article = await collections.articles?.findOne({
 			$or: [{ articleNumber: articleNumber }, { ean: articleNumber }]
 		});
-		return json([article]);
+		return article ? json([article]) : json([]);
 	}
 	if (search) {
 		const articles = await collections.articles
@@ -21,8 +21,10 @@ export async function GET({ url }) {
 			.limit(100)
 			.project({ _id: 0 })
 			.toArray();
+		console.log(articles);
 		return json(articles);
 	}
 	const articles = await collections.articles?.find().limit(100).project({ _id: 0 }).toArray();
+	console.log(articles);
 	return json(articles);
 }
