@@ -39,14 +39,15 @@
 		scannedArticleNumber.set('');
 	}
 	const fetchBySearch = async (search: string) => {
-		console.log(search)
 		loading = true;
-		const res = await fetch(`/article?search=${search}`);
+		const res = await fetch(`/article?name=${search}`);
 		articles = await res.json();
+
 		loading = false;
 	}
 	const onSearched = async (e: CustomEvent<string>) => {
 		lastSearched = e.detail;
+		articleNumber = '';
 		fetchBySearch(e.detail)
 	}
 
