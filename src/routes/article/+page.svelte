@@ -9,6 +9,7 @@
 	import type Article from '../../models/article';
 
 	import A from '$lib/buttons/A.svelte';
+	import LoadingIndicator from '$lib/base/LoadingIndicator.svelte';
 
 
 	export let data: { data: Article[] };
@@ -25,6 +26,7 @@
 
 	$: articleNumber = '';
 
+	$: loading = false;
 	// $: loading = 
 	let onDeleteConfirm = async (e: CustomEvent) => {
 		console.log(e.detail);
@@ -39,8 +41,10 @@
 
 	let onSearch = async (e: CustomEvent<string>) => {
 		search = e.detail;
+		loading = true;
 		const res = await fetch(`/article?name=${search}`);
 		articles = await res.json();
+		loading = false;
 	};
 	let currentArticle: Article;
 
@@ -52,8 +56,10 @@
 	onMount(() => {
 		scannedArticleNumber.subscribe(async(e) => {
 			if (!e) return;
+			loading = true;
 			const res = await fetch(`/article?articleNumber=${e}`);
 			articles = await res.json();
+			loading = false;
 			articleNumber = e as string
 			scannedArticleNumber.set('');
 		});
@@ -67,18 +73,22 @@
 		<CreateButton href="article/create" />
 	</div>
 	<div class="flex flex-col gap-5">
-		{#each articles as article}
-			<ArticleItem
-				on:delete={() => {
-					currentArticle = article;
-					showDeleteModal = true;
-				}}
-				on:addToOrderList={() => (showAddToOrderListModal = true)}
-				{article}
-			/>
+		{#if loading}
+			<LoadingIndicator />
 		{:else}
-			<A href={`article/create?articleNumber=${articleNumber}`}>Artikel Anlegen</A>
-		{/each}
+			{#each articles as article}
+				<ArticleItem
+					on:delete={() => {
+						currentArticle = article;
+						showDeleteModal = true;
+					}}
+					on:addToOrderList={() => (showAddToOrderListModal = true)}
+					{article}
+				/>
+			{:else}
+				<A href={`article/create?articleNumber=${articleNumber}`}>Artikel Anlegen</A>
+			{/each}
+		{/if}
 	</div>
 	<DeleteDialog
 		bind:dialog={deleteDialog}
