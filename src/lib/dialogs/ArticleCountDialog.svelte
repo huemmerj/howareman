@@ -1,7 +1,6 @@
 <script lang="ts">
 	import CancleButton from '$lib/buttons/CancleButton.svelte';
 	import Dialog from './Dialog.svelte';
-	import Counter from '$lib/buttons/Counter.svelte';
 	import Searchbox from '$lib/Searchbox.svelte';
 	import ArticleItem from '$lib/article/ArticleItem.svelte';
 	import { onMount } from 'svelte';
@@ -20,6 +19,7 @@
 	export let stockTaking: StockTaking;
 
 	$: articleNumber = '';
+	$: lastSearched = '';
 	$: articles = [] as Article[];
 
 	$: loading = false;
@@ -27,19 +27,27 @@
 	onMount(() => {
 		scannedArticleNumber.subscribe(async(e) => {
 			if (!e) return;
-			loading = true;
-			const res = await fetch(`/article?articleNumber=${e}`);
-			articles = await res.json();
-			loading = false;
-			scannedArticleNumber.set('');
-			articleNumber = e as string
+			articleNumber = e as string;
+			fetchByArticleNumber(e);
 		});
 	});
-	const onSearched = async (e: CustomEvent<string>) => {
+	const fetchByArticleNumber = async (articleNumber: string) => {
 		loading = true;
-		const res = await fetch(`/article?name=${e.detail}`);
+		const res = await fetch(`/article?articleNumber=${articleNumber}`);
 		articles = await res.json();
 		loading = false;
+		scannedArticleNumber.set('');
+	}
+	const fetchBySearch = async (search: string) => {
+		console.log(search)
+		loading = true;
+		const res = await fetch(`/article?search=${search}`);
+		articles = await res.json();
+		loading = false;
+	}
+	const onSearched = async (e: CustomEvent<string>) => {
+		lastSearched = e.detail;
+		fetchBySearch(e.detail)
 	}
 
 	$: changedArticles = [] as {uuid: string, count: number, name: string}[];
@@ -62,7 +70,16 @@
 			}
 		} catch (e) {
 			notifications.danger(e.message, 4000);
+		} finally {
+			refetch();
+			if (articleNumber) {fetchByArticleNumber(articleNumber);} else{
+				fetchBySearch(lastSearched);
+			}
 		}
+	}
+	const refetch = async () => {
+		const res = await fetch(`/stocktaking/${stockTaking.uuid}`);
+		stockTaking = await res.json();
 	}
 </script>
 
