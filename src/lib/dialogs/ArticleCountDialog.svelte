@@ -20,6 +20,7 @@
 
 	$: articleNumber = '';
 	$: lastSearched = '';
+	$: search = ''
 	$: articles = [] as Article[];
 
 	$: loading = false;
@@ -32,6 +33,7 @@
 		});
 	});
 	const fetchByArticleNumber = async (articleNumber: string) => {
+		search = ''
 		loading = true;
 		const res = await fetch(`/article?articleNumber=${articleNumber}`);
 		articles = await res.json();
@@ -90,7 +92,7 @@
 	</div>
 	<div slot="body">
 		<div class="pb-2.5">
-			<Searchbox showSearchButton={false} on:search={onSearched}/>
+			<Searchbox bind:search={search} showSearchButton={false} on:search={onSearched}/>
 		</div>
 		<div class="flex flex-col gap-5 max-h-80 overflow-y-scroll">
 			{#if loading}
