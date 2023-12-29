@@ -11,6 +11,7 @@
 	import type StockTaking from '../../models/stockTaking';
 	import type Article from '../../models/article';
 	import { notifications } from '$lib/notifications';
+	import LoadingIndicator from '$lib/base/LoadingIndicator.svelte';
 
 	export let showModal: Boolean;
 
@@ -21,18 +22,24 @@
 	$: articleNumber = '';
 	$: articles = [] as Article[];
 
+	$: loading = false;
+
 	onMount(() => {
 		scannedArticleNumber.subscribe(async(e) => {
 			if (!e) return;
+			loading = true;
 			const res = await fetch(`/article?articleNumber=${e}`);
 			articles = await res.json();
+			loading = false;
 			scannedArticleNumber.set('');
 			articleNumber = e as string
 		});
 	});
 	const onSearched = async (e: CustomEvent<string>) => {
+		loading = true;
 		const res = await fetch(`/article?name=${e.detail}`);
 		articles = await res.json();
+		loading = false;
 	}
 
 	$: changedArticles = [] as {uuid: string, count: number, name: string}[];
@@ -68,33 +75,34 @@
 			<Searchbox showSearchButton={false} on:search={onSearched}/>
 		</div>
 		<div class="flex flex-col gap-5 max-h-80 overflow-y-scroll">
-		
-
-		
-		{#each articles as article}
-			<ArticleItem
-				{article}
-				small={true}
-				showCounter={true}
-				count={getArticleCount(article.uuid)?.count}
-				on:count={(e) => {
-					if (changedArticles.find((a) => a.uuid === article.uuid)) {
-						changedArticles = changedArticles.map((a) => {
-							if (a.uuid === article.uuid) {
-								return {uuid: article.uuid, count: e.detail, name: article.name};
+			{#if loading}
+			<LoadingIndicator />
+			{:else}
+				{#each articles as article}
+					<ArticleItem
+						{article}
+						small={true}
+						showCounter={true}
+						count={getArticleCount(article.uuid)?.count}
+						on:count={(e) => {
+							if (changedArticles.find((a) => a.uuid === article.uuid)) {
+								changedArticles = changedArticles.map((a) => {
+									if (a.uuid === article.uuid) {
+										return {uuid: article.uuid, count: e.detail, name: article.name};
+									}
+									return a;
+								});
+								return;
+							} else {
+								changedArticles = [...changedArticles, {uuid: article.uuid, count: e.detail, name: article.name}];
 							}
-							return a;
-						});
-						return;
-					} else {
-						changedArticles = [...changedArticles, {uuid: article.uuid, count: e.detail, name: article.name}];
-					}
-				}}
-			/>
-		{:else}
-			<A href={`article/create?articleNumber=${articleNumber}`}>Artikel Anlegen</A>
-		{/each}
-			</div>
+						}}
+					/>
+				{:else}
+					<A href={`article/create?articleNumber=${articleNumber}`}>Artikel Anlegen</A>
+				{/each}
+			{/if}
+		</div>
 	</div>
 	<div slot="footer">
 		<CancleButton on:click={() => dialog.close()} />
