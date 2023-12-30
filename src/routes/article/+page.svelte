@@ -75,7 +75,7 @@
 	<div class="flex flex-col gap-5">
 		{#if loading}
 			<LoadingIndicator />
-		{:else if articles}
+		{:else if articles && articles.length > 0}
 			{#each articles as article}
 				<ArticleItem
 					on:delete={() => {

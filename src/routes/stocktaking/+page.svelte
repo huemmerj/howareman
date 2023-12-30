@@ -49,7 +49,7 @@
 	</div>
 
 	<div class="flex flex-col gap-5">
-		{#if stockTakings}
+		{#if stockTakings && stockTakings.length > 0}
 			{#each stockTakings as stockTaking}
 				<StockTakingItem
 					{stockTaking}
