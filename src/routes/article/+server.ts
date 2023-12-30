@@ -11,16 +11,33 @@ export async function GET({ url }) {
 		return article ? json([article]) : json([]);
 	}
 	if (search) {
+		// const articles = await collections.articles
+		// 	?.find({
+		// 		$or: [
+		// 			{ name: { $regex: search, $options: 'i' } },
+		// 			{ description: { $regex: search, $options: 'i' } }
+		// 		]
+		// 	})
+		// 	.limit(100)
+		// 	.project({ _id: 0 })
+		// 	.toArray();
 		const articles = await collections.articles
-			?.find({
-				$or: [
-					{ name: { $regex: search, $options: 'i' } },
-					{ description: { $regex: search, $options: 'i' } }
-				]
-			})
+			?.aggregate([
+				{
+					$search: {
+						index: 'default',
+						text: {
+							query: search,
+							path: {
+								wildcard: '*'
+							}
+						}
+					}
+				}
+			])
 			.limit(100)
-			.project({ _id: 0 })
 			.toArray();
+		console.log(articles);
 		return json(articles);
 	}
 	const articles = await collections.articles?.find().limit(100).project({ _id: 0 }).toArray();
