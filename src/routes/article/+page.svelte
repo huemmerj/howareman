@@ -75,7 +75,7 @@
 	<div class="flex flex-col gap-5">
 		{#if loading}
 			<LoadingIndicator />
-		{:else}
+		{:else if articles}
 			{#each articles as article}
 				<ArticleItem
 					on:delete={() => {
@@ -85,9 +85,9 @@
 					on:addToOrderList={() => (showAddToOrderListModal = true)}
 					{article}
 				/>
-			{:else}
-				<A href={`article/create?articleNumber=${articleNumber}`}>Artikel Anlegen</A>
 			{/each}
+		{:else}
+			<A href={`article/create?articleNumber=${articleNumber}`}>Artikel Anlegen</A>
 		{/if}
 	</div>
 	<DeleteDialog

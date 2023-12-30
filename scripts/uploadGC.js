@@ -3,14 +3,19 @@ import readline from 'readline';
 import iconv from 'iconv-lite';
 import * as mongoDB from 'mongodb';
 import { v4 as uuidv4 } from 'uuid';
+import 'dotenv/config';
 
-const client = new mongoDB.MongoClient('mongodb://localhost:27017');
+if (!process.env.MONGO_URL) {
+	throw new Error('Missing MONGO_URL in .env file');
+}
+
+const client = new mongoDB.MongoClient(process.env.MONGO_URL);
 await client.connect();
 const db = client.db('howareman');
 
 const articles = new Map();
 
-const filePath = '/home/jens/projects/howareman/Datanorm/GC/9STAMM/datanorm.001';
+const filePath = '/home/jens/projects/howareman/Datanorm/GC/5STAMM/datanorm.001';
 const fileEncoding = 'CP852'; // Use the correct code page, like CP852
 
 // Create a readable stream from the file
@@ -65,7 +70,7 @@ const createOrUpdateArticle = (article) => {
 	} else {
 		article.uuid = uuidv4();
 		article.warehouse = 'gc';
-		article.group = '9STAMM';
+		article.group = '5STAMM';
 		articles.set(articleNumber, article);
 	}
 };

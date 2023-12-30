@@ -49,22 +49,24 @@
 	</div>
 
 	<div class="flex flex-col gap-5">
-		{#each stockTakings as stockTaking}
-			<StockTakingItem
-				{stockTaking}
-				on:delete={() => {
-					currentStockTaking = stockTaking;
-					showDeleteDialog = true;
-				}}
-				on:count={() => {
-					currentStockTaking = stockTaking;
-					showArticleCountDialog = true;
-				}}
-				on:download={() => {
-					goto('stocktaking/download/'+stockTaking.uuid)
-				}}
-			/>
-		{/each}
+		{#if stockTakings}
+			{#each stockTakings as stockTaking}
+				<StockTakingItem
+					{stockTaking}
+					on:delete={() => {
+						currentStockTaking = stockTaking;
+						showDeleteDialog = true;
+					}}
+					on:count={() => {
+						currentStockTaking = stockTaking;
+						showArticleCountDialog = true;
+					}}
+					on:download={() => {
+						goto('stocktaking/download/'+stockTaking.uuid)
+					}}
+				/>
+			{/each}
+		{/if}
 	</div>
 	<DeleteDialog
 		bind:dialog={deleteDialog}
