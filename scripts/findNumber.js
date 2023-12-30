@@ -2,7 +2,8 @@ import fs from 'fs';
 import readline from 'readline';
 import iconv from 'iconv-lite';
 
-const filePath = '/home/jens/projects/howareman/Datanorm/SanitaerHeize/datanorm/datanorm.001';
+const filePath =
+	'/home/jens/projects/howareman/Datanorm/WS/Datanorm5_WS_Aenderungen_122023/D5Aenderungen_122023/DATPREIS.001';
 const fileEncoding = 'CP852'; // Use the correct code page, like CP852
 
 let lines = 0;
@@ -26,7 +27,8 @@ const rl = readline.createInterface({
 
 rl.on('line', (line) => {
 	const splitted = line.split(';');
-	if ((splitted[0] === 'A' || splitted[0] === 'B') && splitted[2] === '21521452SW') {
+	
+	if ((splitted[0] === 'A' || splitted[0] === 'P') && splitted[1] === '90 513 63') {
 		console.log(line);
 		found = true;
 		foundLine.push(line);

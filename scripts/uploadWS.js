@@ -15,7 +15,8 @@ const db = client.db('howareman');
 
 const articles = new Map();
 
-const filePath = '/home/jens/projects/howareman/Datanorm/GC/5STAMM/datanorm.001';
+const filePath =
+	'/home/jens/projects/howareman/Datanorm/WS/Datanorm5_WS_Aenderungen_122023/D5Aenderungen_122023/DATANORM.001';
 const fileEncoding = 'CP852'; // Use the correct code page, like CP852
 
 // Create a readable stream from the file
@@ -38,25 +39,25 @@ rl.on('line', (line) => {
 	const article = {};
 	article.articleNumber = splitted[2];
 	if (splitted[0] === 'A') {
-		article.name = splitted[4];
-		article.description = splitted[5];
-		console.log(splitted);
+		article.name = splitted[3] + splitted[4];
+		article.category = splitted[11];
 		createOrUpdateArticle(article);
 	}
+	// console.log(splitted);
 });
 
 rl.on('close', () => {
 	console.log('File processed.');
 	const articleArray = [...articles.values()];
-	// const bulkOps = articleArray.map((article) => ({
-	// 	updateOne: {
-	// 		filter: { articleNumber: article.articleNumber },
-	// 		update: { $set: article },
-	// 		upsert: true // If the document doesn't exist, insert it
-	// 	}
-	// }));
+	const bulkOps = articleArray.map((article) => ({
+		updateOne: {
+			filter: { articleNumber: article.articleNumber },
+			update: { $set: article },
+			upsert: true // If the document doesn't exist, insert it
+		}
+	}));
 
-	// db.collection('Article').bulkWrite(bulkOps);
+	db.collection('Article').bulkWrite(bulkOps);
 	console.log(articleArray);
 });
 
@@ -70,8 +71,7 @@ const createOrUpdateArticle = (article) => {
 		});
 	} else {
 		article.uuid = uuidv4();
-		article.warehouse = 'gc';
-		article.group = '5STAMM';
+		article.warehouse = 'WS';
 		articles.set(articleNumber, article);
 	}
 };
