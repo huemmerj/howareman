@@ -87,7 +87,7 @@
 				/>
 			{/each}
 		{:else}
-			<A href={`article/create?articleNumber=${articleNumber}`}>Artikel Anlegen</A>
+			<A href={`article/create?articleNumber=${articleNumber}`}>Artikel mit der Artikelnummer {articleNumber} anlegen</A>
 		{/if}
 	</div>
 	<DeleteDialog
