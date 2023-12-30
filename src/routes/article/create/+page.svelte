@@ -36,7 +36,7 @@
 }
 </script>
 
-<h1 class="text-3xl pl-5 pt-5 pb-2.5">Artikel Anlegen</h1>
+<h1 class="text-3xl pl-5 pt-5 pb-2.5">Artikel mit der Artikelnummer {articleNumber} anlegen</h1>
 
 <div class="px-5 pt-5 flex flex-col gap-5">
 	<form
