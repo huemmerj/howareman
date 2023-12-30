@@ -28,9 +28,7 @@ export async function GET({ url }) {
 						index: 'default',
 						text: {
 							query: search,
-							path: {
-								wildcard: '*'
-							}
+							path: ['name', 'description']
 						}
 					}
 				}
