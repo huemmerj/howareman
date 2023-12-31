@@ -122,7 +122,7 @@
 						}}
 					/>
 				{:else}
-					<A href={`article/create?articleNumber=${articleNumber}`}>Artikel mit der Artikelnummer {articleNumber} anlegen</A>
+					<A href={`article/create?articleNumber=${articleNumber}`}>{articleNumber? `Artikel mit der Artikelnummer ${articleNumber} anlegen`: 'Artikel anlegen'}</A>
 				{/each}
 			{/if}
 		</div>
