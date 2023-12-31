@@ -11,9 +11,9 @@
 	<FooterItem name="Artikel" href="/article">
 		<HouseIcon />
 	</FooterItem>
-	<FooterItem name="Bestellungen" href="/orderlist">
+	<!-- <FooterItem name="Bestellungen" href="/orderlist">
 		<ListIcon />
-	</FooterItem>
+	</FooterItem> -->
 	<FooterItem name="Inventur" href="/stocktaking">
 		<InventoryIcon />
 	</FooterItem>
