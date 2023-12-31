@@ -36,7 +36,7 @@
 }
 </script>
 
-<h1 class="text-3xl pl-5 pt-5 pb-2.5">Artikel mit der Artikelnummer {articleNumber} anlegen</h1>
+<h1 class="text-3xl pl-5 pt-5 pb-2.5">Artikel anlegen</h1>
 
 <div class="px-5 pt-5 flex flex-col gap-5">
 	<form
@@ -54,7 +54,7 @@
 					}}/>
 			</Input>
 		</div>
-		<div class="flex justify-end gap-3 pt-6">
+		<div class="flex justify-end gap-3 py-6">
 			<CancleButton />
 			<SaveButton />
 		</div>
