@@ -10,6 +10,8 @@
 
 	import A from '$lib/buttons/A.svelte';
 	import LoadingIndicator from '$lib/base/LoadingIndicator.svelte';
+	import UserButton from 'clerk-sveltekit/client/UserButton.svelte'
+	import SignedIn from 'clerk-sveltekit/client/SignedIn.svelte'
 
 
 	export let data: { data: Article[] };
@@ -67,7 +69,13 @@
 </script>
 
 <div class="p-5 flex-row">
-	<h1 class="text-3xl pt-5 pb-2.5">Artikel</h1>
+	<div class="flex pt-5 pb-2.5 justify-between">
+		<h1 class="text-3xl">Artikel</h1>
+		
+		<SignedIn>
+			<UserButton afterSignOutUrl="/login" />
+		</SignedIn>
+	</div>
 	<Searchbox on:search={onSearch} showSearchButton={false}/>
 	<div class="flex justify-end pt-5 pb-2.5">
 		<CreateButton href="article/create" />

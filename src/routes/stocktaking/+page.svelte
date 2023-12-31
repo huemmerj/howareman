@@ -6,6 +6,9 @@
 	import StockTakingItem from '$lib/stockTaking/StockTakingItem.svelte';
 	import type StockTaking from '../../models/stockTaking';
 	import { goto } from '$app/navigation';
+
+	import UserButton from 'clerk-sveltekit/client/UserButton.svelte'
+	import SignedIn from 'clerk-sveltekit/client/SignedIn.svelte'
 	export let data: { data: StockTaking[] };
 
 	$: stockTakings = data.data;
@@ -42,7 +45,13 @@
 </script>
 
 <div class="p-5 flex-row">
-	<h1 class="text-3xl pt-5 pb-2.5">Inventur</h1>
+	<div class="flex pt-5 pb-2.5 justify-between">
+		<h1 class="text-3xl">Artikel</h1>
+		
+		<SignedIn>
+			<UserButton afterSignOutUrl="/login" />
+		</SignedIn>
+	</div>
 	<Searchbox on:search={onSearch} showScanButton={false}/>
 	<div class="flex justify-end pt-5 pb-2.5">
 		<CreateButton href="stocktaking/create" />
