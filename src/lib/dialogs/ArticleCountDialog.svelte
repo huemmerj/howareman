@@ -63,10 +63,12 @@
 	const onSave = async () => {
 		try {
 			console.log(changedArticles)
+			loading = true;
 			const res = await fetch(`/stocktaking/count/${stockTaking.uuid}`, {
 				method: 'PUT',
 				body: JSON.stringify(changedArticles)
 			});
+			loading = false;
 			if (res.status === 201){
 				notifications.success('Erfolgreich gespeichert',4000);
 			} else {
