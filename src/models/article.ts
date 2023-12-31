@@ -9,6 +9,9 @@ export default class Article {
 		public articleNumber: string,
 		public uuid: string,
 		public _id?: string | ObjectId,
-		public ean?: string
+		public ean?: string,
+		public warehouse?: string,
+		public group?: string,
+		public category?: string
 	) {}
 }

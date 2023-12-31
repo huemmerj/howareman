@@ -5,7 +5,8 @@ export async function PUT({ params, request }) {
 	try {
 		const body = await request.json();
 		for (const countedArticle of body) {
-			const { uuid, count, name } = countedArticle;
+			console.log(countedArticle);
+			const { uuid, count, name, articleNumber, warehouse, group, category } = countedArticle;
 			const { id } = params;
 			const stockTaking = await collections.stockTaking?.findOne({
 				uuid: id
@@ -39,7 +40,11 @@ export async function PUT({ params, request }) {
 							articles: {
 								uuid,
 								count,
-								name
+								name,
+								articleNumber,
+								warehouse: warehouse ? warehouse : null,
+								group: group ? group : null,
+								category: category ? category : null
 							}
 						}
 					}

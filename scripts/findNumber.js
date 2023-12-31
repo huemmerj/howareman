@@ -2,8 +2,7 @@ import fs from 'fs';
 import readline from 'readline';
 import iconv from 'iconv-lite';
 
-const filePath =
-	'/home/jens/projects/howareman/Datanorm/WS/Datanorm5_WS_Aenderungen_122023/D5Aenderungen_122023/DATPREIS.001';
+const filePath = '/home/jens/projects/howareman/Datanorm/GC/5STAMM/datanorm.001';
 const fileEncoding = 'CP852'; // Use the correct code page, like CP852
 
 let lines = 0;
@@ -27,11 +26,11 @@ const rl = readline.createInterface({
 
 rl.on('line', (line) => {
 	const splitted = line.split(';');
-	
-	if ((splitted[0] === 'A' || splitted[0] === 'P') && splitted[1] === '90 513 63') {
+
+	if (splitted[0] === 'A' || splitted[0] === 'P') {
 		console.log(line);
-		found = true;
-		foundLine.push(line);
+		console.log('Category: ', splitted[10]);
+		throw new Error('Found A or P');
 	}
 	console.log(lines, ': ', line);
 	lines++;

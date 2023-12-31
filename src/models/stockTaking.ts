@@ -11,6 +11,9 @@ export default class StockTaking {
 			articleNumber: string;
 			name: string;
 			count: number;
+			warehouse?: string;
+			group?: string;
+			category?: string;
 		}[],
 		public _id?: string | ObjectId
 	) {}

@@ -35,7 +35,6 @@ export async function GET({ url }) {
 			])
 			.limit(100)
 			.toArray();
-		console.log(articles);
 		return json(articles);
 	}
 	const articles = await collections.articles?.find().limit(100).project({ _id: 0 }).toArray();

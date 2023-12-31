@@ -2,7 +2,6 @@ import fs from 'fs';
 import readline from 'readline';
 import iconv from 'iconv-lite';
 import * as mongoDB from 'mongodb';
-import { v4 as uuidv4 } from 'uuid';
 import 'dotenv/config';
 
 if (!process.env.MONGO_URL) {
@@ -40,7 +39,8 @@ rl.on('line', (line) => {
 	if (splitted[0] === 'A') {
 		article.name = splitted[4];
 		article.description = splitted[5];
-		console.log(splitted);
+		article.category = splitted[10];
+		// console.log(splitted);
 		createOrUpdateArticle(article);
 	}
 });
@@ -48,15 +48,15 @@ rl.on('line', (line) => {
 rl.on('close', () => {
 	console.log('File processed.');
 	const articleArray = [...articles.values()];
-	// const bulkOps = articleArray.map((article) => ({
-	// 	updateOne: {
-	// 		filter: { articleNumber: article.articleNumber },
-	// 		update: { $set: article },
-	// 		upsert: true // If the document doesn't exist, insert it
-	// 	}
-	// }));
+	const bulkOps = articleArray.map((article) => ({
+		updateOne: {
+			filter: { articleNumber: article.articleNumber },
+			update: { $set: article },
+			upsert: true // If the document doesn't exist, insert it
+		}
+	}));
 
-	// db.collection('Article').bulkWrite(bulkOps);
+	db.collection('Article').bulkWrite(bulkOps);
 	console.log(articleArray);
 });
 
@@ -69,7 +69,6 @@ const createOrUpdateArticle = (article) => {
 			...article
 		});
 	} else {
-		article.uuid = uuidv4();
 		article.warehouse = 'gc';
 		article.group = '5STAMM';
 		articles.set(articleNumber, article);

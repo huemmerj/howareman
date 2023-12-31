@@ -11,6 +11,7 @@
 	import type Article from '../../models/article';
 	import { notifications } from '$lib/notifications';
 	import LoadingIndicator from '$lib/base/LoadingIndicator.svelte';
+	import { stringify } from 'uuid';
 
 	export let showModal: Boolean;
 
@@ -53,7 +54,7 @@
 		fetchBySearch(e.detail)
 	}
 
-	$: changedArticles = [] as {uuid: string, count: number, name: string}[];
+	$: changedArticles = [] as {uuid: string, count: number, name: string, articleNumber: string, warehouse?: string, group?: string, category?: string}[];
 
 	const getArticleCount = (uuid: string) => {
 		return stockTaking.articles?.find((a: Article) => a.uuid === uuid);
@@ -61,7 +62,7 @@
 
 	const onSave = async () => {
 		try {
-
+			console.log(changedArticles)
 			const res = await fetch(`/stocktaking/count/${stockTaking.uuid}`, {
 				method: 'PUT',
 				body: JSON.stringify(changedArticles)
@@ -108,13 +109,13 @@
 							if (changedArticles.find((a) => a.uuid === article.uuid)) {
 								changedArticles = changedArticles.map((a) => {
 									if (a.uuid === article.uuid) {
-										return {uuid: article.uuid, count: e.detail, name: article.name};
+										return {uuid: article.uuid, count: e.detail, name: article.name, articleNumber: article.articleNumber, warehouse: article.warehouse, group: article.group, category: article.category};
 									}
 									return a;
 								});
 								return;
 							} else {
-								changedArticles = [...changedArticles, {uuid: article.uuid, count: e.detail, name: article.name}];
+								changedArticles = [...changedArticles, {uuid: article.uuid, count: e.detail, name: article.name, articleNumber: article.articleNumber, warehouse: article.warehouse, group: article.group, category: article.category}];
 							}
 						}}
 					/>
