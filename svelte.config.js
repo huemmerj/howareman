@@ -9,8 +9,8 @@ const config = {
 	preprocess: vitePreprocess(),
 	kit: {
 		adapter: adapter({
-			edge: true,
-			split: false
+			edge: false,
+			split: true
 		}),
 		alias: {
 			$db: './src/db' // alias for db folder
