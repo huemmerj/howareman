@@ -1,8 +1,7 @@
 import { collections } from '$db/mongo';
 import { json } from '@sveltejs/kit';
 
-export async function GET({ url }) {
-	return json({ message: 'Hello world!' });
+export async function GET({ url, locals }) {
 	const search = url.searchParams.get('name');
 	const articleNumber = url.searchParams.get('articleNumber');
 	if (articleNumber) {
