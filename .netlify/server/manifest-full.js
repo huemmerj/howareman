@@ -10,7 +10,7 @@ return {
 	assets: new Set(["favicon.png","manifest.json"]),
 	mimeTypes: {".png":"image/png",".json":"application/json"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.746f454f.js","app":"_app/immutable/entry/app.a339a7a7.js","imports":["_app/immutable/entry/start.746f454f.js","_app/immutable/chunks/scheduler.67e96421.js","_app/immutable/chunks/singletons.dab309b6.js","_app/immutable/chunks/index.9c8849c9.js","_app/immutable/chunks/parse.bee59afc.js","_app/immutable/entry/app.a339a7a7.js","_app/immutable/chunks/scheduler.67e96421.js","_app/immutable/chunks/index.270a0ff7.js"],"stylesheets":[],"fonts":[]},
+		client: {"start":"_app/immutable/entry/start.af887e70.js","app":"_app/immutable/entry/app.963c4fbd.js","imports":["_app/immutable/entry/start.af887e70.js","_app/immutable/chunks/scheduler.3f4853f6.js","_app/immutable/chunks/singletons.f0c0c513.js","_app/immutable/chunks/index.94ac5327.js","_app/immutable/chunks/parse.bee59afc.js","_app/immutable/entry/app.963c4fbd.js","_app/immutable/chunks/store.b773188a.js","_app/immutable/chunks/index.94ac5327.js","_app/immutable/chunks/scheduler.3f4853f6.js","_app/immutable/chunks/index.5586b7df.js"],"stylesheets":[],"fonts":[]},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),
@@ -19,7 +19,8 @@ return {
 			__memo(() => import('./nodes/4.js')),
 			__memo(() => import('./nodes/5.js')),
 			__memo(() => import('./nodes/6.js')),
-			__memo(() => import('./nodes/7.js'))
+			__memo(() => import('./nodes/7.js')),
+			__memo(() => import('./nodes/8.js'))
 		],
 		routes: [
 			{
@@ -51,17 +52,24 @@ return {
 				endpoint: __memo(() => import('./entries/endpoints/article/_id_/_server.ts.js'))
 			},
 			{
+				id: "/login",
+				pattern: /^\/login\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 5 },
+				endpoint: null
+			},
+			{
 				id: "/orderlist",
 				pattern: /^\/orderlist\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 5 },
+				page: { layouts: [0,], errors: [1,], leaf: 6 },
 				endpoint: null
 			},
 			{
 				id: "/stocktaking",
 				pattern: /^\/stocktaking\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 6 },
+				page: { layouts: [0,], errors: [1,], leaf: 7 },
 				endpoint: __memo(() => import('./entries/endpoints/stocktaking/_server.ts.js'))
 			},
 			{
@@ -75,7 +83,7 @@ return {
 				id: "/stocktaking/create",
 				pattern: /^\/stocktaking\/create\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 7 },
+				page: { layouts: [0,], errors: [1,], leaf: 8 },
 				endpoint: null
 			},
 			{
