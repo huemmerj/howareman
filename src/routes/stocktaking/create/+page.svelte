@@ -20,7 +20,11 @@
 	>
 		<Input name="name" id="name" lable="Name" placeholder="Titel" />
 		<div class="flex justify-end gap-3 pt-6">
-			<CancleButton />
+			<CancleButton on:click={
+				(e) => {
+					e.preventDefault()
+					goto('/stocktaking')}
+			}/>
 			<SaveButton />
 		</div>
 	</form>
