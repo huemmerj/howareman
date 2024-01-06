@@ -10,7 +10,6 @@ const config = {
 	preprocess: vitePreprocess(),
 	kit: {
 		adapter: adapter({
-			runtime: 'edge',
 			split: true
 		}),
 		alias: {
