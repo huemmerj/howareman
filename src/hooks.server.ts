@@ -16,6 +16,6 @@ connect()
 		console.log('MongoDB started');
 	})
 	.catch((e) => {
-		console.log('MongoDB failed to start');
+		console.log('MongoDB failed to start jo jo jo');
 		console.log(e);
 	});
