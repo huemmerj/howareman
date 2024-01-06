@@ -46,7 +46,7 @@
 
 <div class="p-5 flex-row">
 	<div class="flex pt-5 pb-2.5 justify-between">
-		<h1 class="text-3xl">Artikel</h1>
+		<h1 class="text-3xl">Inventur</h1>
 		
 		<SignedIn>
 			<UserButton afterSignOutUrl="/login" />
