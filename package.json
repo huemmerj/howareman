@@ -47,6 +47,7 @@
 	"dependencies": {
 		"@clerk/clerk-js": "^4.68.1",
 		"@clerk/themes": "^1.7.9",
+		"@sveltejs/adapter-vercel": "^4.0.4",
 		"clerk-sveltekit": "^0.4.0",
 		"csv": "^6.3.5",
 		"csv-parse": "^5.5.2",
