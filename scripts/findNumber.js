@@ -2,7 +2,11 @@ import fs from 'fs';
 import readline from 'readline';
 import iconv from 'iconv-lite';
 
-const filePath = '/home/jens/projects/howareman/Datanorm/GC/5STAMM/datanorm.001';
+// const filePath = '/home/jens/projects/howareman/Datanorm/GC/PersönlichePreispflege/datpreis.001';
+// const filePath =
+// '/home/jens/projects/howareman/Datanorm/SanitaerHeize/2023-12_datanorm/datanorm.001';
+
+const filePath = '/home/jens/projects/howareman/DataNormNew/GC/datpreis.001';
 const fileEncoding = 'CP852'; // Use the correct code page, like CP852
 
 let lines = 0;
@@ -26,13 +30,13 @@ const rl = readline.createInterface({
 
 rl.on('line', (line) => {
 	const splitted = line.split(';');
-
-	if (splitted[0] === 'A' || splitted[0] === 'P') {
+	// console.log(splitted[2]);
+	if (line.includes(';PPSM28;')) {
 		console.log(line);
 		console.log('Category: ', splitted[10]);
 		throw new Error('Found A or P');
 	}
-	console.log(lines, ': ', line);
+	// console.log(lines, ': ', line);
 	lines++;
 });
 
