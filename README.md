@@ -111,3 +111,10 @@ pnpm install
 ```bash
 pnpm dev
 ```
+
+
+
+## Zukünftige Funktionen
+- Bestelllisten
+- Kategoriesuche
+- Artikel bearbeiten
