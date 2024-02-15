@@ -5,7 +5,7 @@
 ## Technologien
 
 
-### Login
+### Clerk
 Die App verwendet eine Authentifizierung mithilfe von Clerk. Clerk ist ein Authentifizierungsdienst, der es ermöglicht, Nutzer zu verwalten und zu authentifizieren. Für genauere Informationen zu Clerk, besuchen Sie bitte die [Clerk-Dokumentation](https://docs.clerk.dev/).
 
 ### Sveltekit
@@ -45,21 +45,69 @@ MongoDB ist eine NoSQL-Datenbank, die auf Dokumenten basiert. Sie ermöglicht es
 ### Artikel Suchen
 Die Suche ermöglicht es, Artikel anhand von Artikelnummer, EAN, Name oder Beschreibung zu finden. Um eine Effiziente Fuzzy-Search zu ermöglichen habe ich die "Atlas Search" verwendet. Für genauere Informationen zur "Atlas Search", besuchen Sie bitte die [Atlas Search-Dokumentation](https://docs.atlas.mongodb.com/atlas-search/).
 
-![Homescreen](image.png)
+![Homescreen](images/image.png)
+
 
 ### Artikel Scannen
 Die App ermöglicht es, Artikel mithilfe des Barcodes zu scannen. Wenn ein Artikel gescannt wurde wird automatisch nach dieser Artikelnummer gesucht und das Ergebnis angezeigt.
-![Alt text](image-3.png)
+
+![Alt text](images/image-3.png)
 
 ### Inventur Anlegen
-![Alt text](image-4.png)
+![Alt text](images/image-4.png)
 
 ### Inventur Löschen
-![Alt text](image-5.png)
+![Alt text](images/image-5.png)
 
 ### Artikel in Inventur hinzufügen
 um Artikel in eine Inventur hinzuzufügen, könnnen diese wieder einfach gescannt, oder über die Suche gefunden werden. Im anschluss kann der Artikel mit der gezählten anzahl hinzugefügt werden.
-![Alt text](image-6.png)
+
+![Alt text](images/image-6.png)
 
 ### Inventur als CSV exportieren
 Die App ermöglicht es, eine Inventur als CSV-Datei zu exportieren. Die CSV-Datei enthält die Spalten "Artikelnummer", "Name", "Beschreibung", "EAN", "Kategorie" und "Gezählte Anzahl".
+
+
+## Installation
+### Voraussetzungen
+- Node.js
+- pnpm
+- MongoDB / Docker
+- Clerk
+
+### Schritte
+#### 1. Repository klonen
+```bash
+git clone https://github.com/huemmerj/howareman
+```
+
+#### 2. Datenbank starten
+Stellen Sie sicher, das Sie die MongoDB-Instanz gestartet haben. Wenn Sie Docker verwenden, können Sie die MongoDB-Instanz mit dem folgenden Befehl starten:
+
+```bash
+docker compose up
+```
+
+Fügen Sie die folgenden Umgebungsvariablen zur .env hinzu:
+
+```env
+MONGODB_URI
+```
+
+#### 3. Clerk konfigurieren
+Erstellen Sie ein Clerk-Konto und konfigurieren Sie die Authentifizierung. Fügen Sie die folgenden Umgebungsvariablen zur .env hinzu:
+
+```env
+PUBLIC_CLERK_PUBLISHABLE_KEY
+CLERK_SECRET_KEY
+```
+
+#### 4. Abhängigkeiten installieren
+```bash
+pnpm install
+```
+
+#### 5. App starten
+```bash
+pnpm dev
+```
