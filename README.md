@@ -37,10 +37,10 @@ MongoDB ist eine NoSQL-Datenbank, die auf Dokumenten basiert. Sie ermöglicht es
 ## Funktionen
 ### Artikel hinzufügen
 
-![Artikel anlegen](image-1.png)
+![Artikel anlegen](images/image-1.png)
 
 ### Artikel löschen
-![Alt text](image-2.png)
+![Alt text](images/image-2.png)
 
 ### Artikel Suchen
 Die Suche ermöglicht es, Artikel anhand von Artikelnummer, EAN, Name oder Beschreibung zu finden. Um eine Effiziente Fuzzy-Search zu ermöglichen habe ich die "Atlas Search" verwendet. Für genauere Informationen zur "Atlas Search", besuchen Sie bitte die [Atlas Search-Dokumentation](https://docs.atlas.mongodb.com/atlas-search/).
