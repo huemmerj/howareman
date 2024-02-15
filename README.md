@@ -1,38 +1,36 @@
-# create-svelte
+# Howareman
+## Projektbeschreibung
+"Howareman" ist eine Open-Source-App zur Verwaltung von Inventarbeständen. Sie ermöglicht es Nutzern, alle Arten von Artikeln effizient zu erfassen, zu speichern und zu verwalten. Funktionen wird später noch genauer eingegangen.
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## Technologien
 
-## Creating a project
+### Sveltekit
+Dieses Projekt ist mit Sveltekit in der Version 4 erstellt. Für genauere Informationen zu Sveltekit, besuchen Sie bitte die [Sveltekit-Dokumentation](https://kit.svelte.dev/docs).
 
-If you're seeing this, you've probably already done this step. Congrats!
+### TailwindCSS
+TailwindCSS ist ein CSS-Framework, das auf Utility-First basiert. Es ermöglicht es, schnell und effizient CSS-Styles zu erstellen. Für genauere Informationen zu TailwindCSS, besuchen Sie bitte die [TailwindCSS-Dokumentation](https://tailwindcss.com/docs).
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+### MongoDB
+MongoDB ist eine NoSQL-Datenbank, die auf Dokumenten basiert. Sie ermöglicht es, Daten in Form von JSON-ähnlichen Dokumenten zu speichern. Für genauere Informationen zu MongoDB, besuchen Sie bitte die [MongoDB-Dokumentation](https://docs.mongodb.com/).
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+## Resourcen
+### Artikel
+- _id
+- articleNumber
+- description
+- ean
+- name
+- uuid
+- warehouse
+- category
 
-## Developing
+### StockTaking
+- _id
+- uuid
+- name
+- articles
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## Funktionen
+### Artikel hinzufügen
+Nutzer können Artikel hinzufügen, indem sie die Artikelnummer, die Beschreibung, die EAN, den Namen, die UUID, das Lager und die Kategorie eingeben.
+![Alt text](image.png)
