@@ -2,9 +2,9 @@ import fs from 'fs';
 import readline from 'readline';
 import iconv from 'iconv-lite';
 
-const fileEncoding = 'CP852';
+const fileEncoding = 'utf-8';
 
-const stockTakingFilePath = '/home/jens/projects/howareman/Stocktaking/stockTakingNeu.csv';
+const stockTakingFilePath = '/home/jens/projects/howareman/Stocktaking/mergedStockTaking.csv';
 
 const stockTaking = [];
 // Heinze
@@ -175,10 +175,12 @@ readArticlesHeinze().then(() => {
 
 						// create CSV from stocktaking and save to file
 						const csv = stockTaking.map((article) => {
-							return `${article.articleNumber};${article.name};${article.count};${article.warehouse};${article.bruttoPrice};${article.nettoPrice}`;
+							return `${article.articleNumber};${article.name};${article.count};${
+								article.warehouse
+							};${article.bruttoPrice / 100};${article.nettoPrice / 100}`;
 						});
 						fs.writeFile(
-							'/home/jens/projects/howareman/Stocktaking/stockTakingWithPrices.csv',
+							'/home/jens/projects/howareman/Stocktaking/stockTakingWithPricesNeuGC.csv',
 							csv.join('\n'),
 							(err) => {
 								if (err) {
