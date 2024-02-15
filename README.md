@@ -4,6 +4,10 @@
 
 ## Technologien
 
+
+### Login
+Die App verwendet eine Authentifizierung mithilfe von Clerk. Clerk ist ein Authentifizierungsdienst, der es ermöglicht, Nutzer zu verwalten und zu authentifizieren. Für genauere Informationen zu Clerk, besuchen Sie bitte die [Clerk-Dokumentation](https://docs.clerk.dev/).
+
 ### Sveltekit
 Dieses Projekt ist mit Sveltekit in der Version 4 erstellt. Für genauere Informationen zu Sveltekit, besuchen Sie bitte die [Sveltekit-Dokumentation](https://kit.svelte.dev/docs).
 
@@ -32,5 +36,30 @@ MongoDB ist eine NoSQL-Datenbank, die auf Dokumenten basiert. Sie ermöglicht es
 
 ## Funktionen
 ### Artikel hinzufügen
-Nutzer können Artikel hinzufügen, indem sie die Artikelnummer, die Beschreibung, die EAN, den Namen, die UUID, das Lager und die Kategorie eingeben.
-![Alt text](image.png)
+
+![Artikel anlegen](image-1.png)
+
+### Artikel löschen
+![Alt text](image-2.png)
+
+### Artikel Suchen
+Die Suche ermöglicht es, Artikel anhand von Artikelnummer, EAN, Name oder Beschreibung zu finden. Um eine Effiziente Fuzzy-Search zu ermöglichen habe ich die "Atlas Search" verwendet. Für genauere Informationen zur "Atlas Search", besuchen Sie bitte die [Atlas Search-Dokumentation](https://docs.atlas.mongodb.com/atlas-search/).
+
+![Homescreen](image.png)
+
+### Artikel Scannen
+Die App ermöglicht es, Artikel mithilfe des Barcodes zu scannen. Wenn ein Artikel gescannt wurde wird automatisch nach dieser Artikelnummer gesucht und das Ergebnis angezeigt.
+![Alt text](image-3.png)
+
+### Inventur Anlegen
+![Alt text](image-4.png)
+
+### Inventur Löschen
+![Alt text](image-5.png)
+
+### Artikel in Inventur hinzufügen
+um Artikel in eine Inventur hinzuzufügen, könnnen diese wieder einfach gescannt, oder über die Suche gefunden werden. Im anschluss kann der Artikel mit der gezählten anzahl hinzugefügt werden.
+![Alt text](image-6.png)
+
+### Inventur als CSV exportieren
+Die App ermöglicht es, eine Inventur als CSV-Datei zu exportieren. Die CSV-Datei enthält die Spalten "Artikelnummer", "Name", "Beschreibung", "EAN", "Kategorie" und "Gezählte Anzahl".
