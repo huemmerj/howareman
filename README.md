@@ -1,6 +1,6 @@
 # Howareman
 ## Projektbeschreibung
-"Howareman" ist eine Open-Source-App zur Verwaltung von Inventarbeständen. Sie ermöglicht es Nutzern, alle Arten von Artikeln effizient zu erfassen, zu speichern und zu verwalten. Funktionen wird später noch genauer eingegangen.
+"Howareman" ist eine Open-Source-App zur Verwaltung von Inventarbeständen. Sie ermöglicht es Nutzern, alle Arten von Artikeln effizient zu erfassen, zu speichern und zu verwalten. Auf weitere Funktionen wird später noch genauer eingegangen.
 
 ## Technologien
 
