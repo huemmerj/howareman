@@ -27,7 +27,7 @@ export async function GET({ url, locals }) {
 		// 	.toArray();
 		// return json(articles);
 		const articles = await collections.articles
-			?.find({ $text: { $search: 'camera -Apple' } })
+			?.find({ $text: { $search: search } })
 			.limit(100)
 			.toArray();
 		return json(articles);
