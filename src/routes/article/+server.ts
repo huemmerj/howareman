@@ -11,18 +11,23 @@ export async function GET({ url, locals }) {
 		return article ? json([article]) : json([]);
 	}
 	if (search) {
+		// const articles = await collections.articles
+		// 	?.aggregate([
+		// 		{
+		// 			$search: {
+		// 				index: 'default',
+		// 				text: {
+		// 					query: search,
+		// 					path: ['name', 'description']
+		// 				}
+		// 			}
+		// 		}
+		// 	])
+		// 	.limit(100)
+		// 	.toArray();
+		// return json(articles);
 		const articles = await collections.articles
-			?.aggregate([
-				{
-					$search: {
-						index: 'default',
-						text: {
-							query: search,
-							path: ['name', 'description']
-						}
-					}
-				}
-			])
+			?.find({ $text: { $search: 'camera -Apple' } })
 			.limit(100)
 			.toArray();
 		return json(articles);
