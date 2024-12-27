@@ -16,4 +16,3 @@ scripts/upload.js
 scripts/uploadCSV.js
 scripts/uploadDataNorm.js
 scripts/uploadHeinze.js
-docker-compose.yml
