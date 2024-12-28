@@ -13,7 +13,6 @@ services:
       - mongodb_data:/data/db
     networks:
       - mynetwork
-
   mongo-express:
     image: mongo-express
     container_name: mongo-express
@@ -28,9 +27,20 @@ services:
     depends_on:
       - mongodb
 
+  typesense:
+    image: typesense/typesense:27.1
+    restart: on-failure
+    ports:
+      - "8108:8108"
+    volumes:
+      - typesense:/data
+    command: '--data-dir /data --api-key=xyz --enable-cors'
+
 networks:
   mynetwork:
     driver: bridge
 
 volumes:
   mongodb_data:
+  typesense:
+    driver: local

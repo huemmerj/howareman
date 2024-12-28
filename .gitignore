@@ -17,3 +17,4 @@ scripts/uploadCSV.js
 scripts/uploadDataNorm.js
 scripts/uploadHeinze.js
 myenv/
+typesense-data/
