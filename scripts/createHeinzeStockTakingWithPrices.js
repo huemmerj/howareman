@@ -4,16 +4,17 @@ import iconv from 'iconv-lite';
 
 const fileEncoding = 'utf-8';
 
-const stockTakingFilePath = '/home/jens/projects/howareman/Stocktaking/mergedStockTaking.csv';
+const stockTakingFilePath = '/home/jens/projects/howaremanPreise/sanitaerheinze/stockTaking.csv';
 
 const stockTaking = [];
 // Heinze
-const articlesHeinzeFilePath =
-	'/home/jens/projects/howareman/DataNormNew/Heinze/erstausruestung/datanorm.001';
+const articlesHeinzeFilePath = '/home/jens/projects/howaremanPreise/sanitaerheinze/datanorm.001';
 
-const nettoPricesHeinzeFilePath = '/home/jens/projects/howareman/DataNormNew/Heinze/datpreis.001';
+const nettoPricesHeinzeFilePath =
+	'/home/jens/projects/howaremanPreise/sanitaerheinze/HUGE401001_datpreis.001';
 
-const discountGroupHeinzeFilePath = '/home/jens/projects/howareman/DataNormNew/Heinze/datanorm.rab';
+const discountGroupHeinzeFilePath =
+	'/home/jens/projects/howaremanPreise/sanitaerheinze/HUGE401001_datanorm.rab';
 
 const articlesHeinze = new Map();
 const nettoPricesHeinze = new Map();
@@ -184,7 +185,7 @@ readArticlesHeinze().then(() => {
 							};${article.bruttoPrice / 100};${article.nettoPrice / 100}`;
 						});
 						fs.writeFile(
-							'/home/jens/projects/howareman/Stocktaking/stockTakingWithPrices.csv',
+							'/home/jens/projects/howaremanPreise/stockTakingWithPrices.csv',
 							csv.join('\n'),
 							(err) => {
 								if (err) {
