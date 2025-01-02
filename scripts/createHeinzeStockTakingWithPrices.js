@@ -4,7 +4,7 @@ import iconv from 'iconv-lite';
 
 const fileEncoding = 'utf-8';
 
-const stockTakingFilePath = '/home/jens/projects/howaremanPreise/sanitaerheinze/stockTaking.csv';
+const stockTakingFilePath = '/home/jens/projects/howaremanPreise/sanitaerheinze/stocktaking.csv';
 
 const stockTaking = [];
 // Heinze
